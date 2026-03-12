@@ -1,0 +1,13 @@
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+apps/web/node_modules/
+apps/web/.next/
+apps/web/out/
+
+artifacts/runs/
+artifacts/runs.sqlite3
+

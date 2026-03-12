@@ -1,0 +1,76 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="40" fill="#F4F7F4"/>
+  <rect x="40" y="40" width="1520" height="820" rx="34" fill="url(#bg)"/>
+  <rect x="84" y="82" width="1432" height="104" rx="24" fill="#FFFFFF" fill-opacity="0.84" stroke="#102A43" stroke-opacity="0.08"/>
+  <text x="124" y="126" fill="#0F7C82" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="1.8">SOUTHLAKE DISTRIBUTED-HEALTH-NETWORK PLANNING STUDIO</text>
+  <text x="124" y="164" fill="#102A43" font-family="Space Grotesk, Arial, sans-serif" font-size="40" font-weight="700">Agentic workflow from public data to pitch-ready planning artifacts</text>
+
+  <rect x="84" y="220" width="246" height="360" rx="28" fill="#FFFFFF" fill-opacity="0.92" stroke="#102A43" stroke-opacity="0.08"/>
+  <text x="116" y="270" fill="#5A7184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.2">INPUT LAYER</text>
+  <text x="116" y="326" fill="#102A43" font-family="Space Grotesk, Arial, sans-serif" font-size="32" font-weight="700">Public ED dataset</text>
+  <text x="116" y="374" fill="#102A43" font-family="IBM Plex Sans, Arial, sans-serif" font-size="22">Curated NHAMCS operational subset</text>
+  <text x="116" y="418" fill="#5A7184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="20">Used as a safe starting point</text>
+  <rect x="116" y="456" width="182" height="42" rx="21" fill="#DFF8EC"/>
+  <text x="145" y="483" fill="#0F7C82" font-family="IBM Plex Sans, Arial, sans-serif" font-size="18" font-weight="700">No Southlake PHI</text>
+  <text x="116" y="534" fill="#102A43" font-family="IBM Plex Sans, Arial, sans-serif" font-size="20">Goal: enable early planning and innovation without using local patient records.</text>
+
+  <rect x="370" y="220" width="286" height="360" rx="28" fill="#FFFFFF" fill-opacity="0.92" stroke="#102A43" stroke-opacity="0.08"/>
+  <text x="402" y="270" fill="#5A7184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.2">AGENT LAYER</text>
+  <text x="402" y="326" fill="#102A43" font-family="Space Grotesk, Arial, sans-serif" font-size="32" font-weight="700">Intent, profile, plan</text>
+  <rect x="402" y="360" width="222" height="54" rx="18" fill="#102A43"/>
+  <text x="426" y="394" fill="#F8FAFC" font-family="IBM Plex Sans, Arial, sans-serif" font-size="20" font-weight="700">Stakeholder and goal framing</text>
+  <rect x="402" y="430" width="222" height="54" rx="18" fill="#FFFFFF" stroke="#102A43" stroke-opacity="0.08"/>
+  <text x="432" y="464" fill="#102A43" font-family="IBM Plex Sans, Arial, sans-serif" font-size="20" font-weight="700">Schema and risk profiling</text>
+  <rect x="402" y="500" width="222" height="54" rx="18" fill="#FFFFFF" stroke="#102A43" stroke-opacity="0.08"/>
+  <text x="452" y="534" fill="#102A43" font-family="IBM Plex Sans, Arial, sans-serif" font-size="20" font-weight="700">Synthesis plan</text>
+
+  <rect x="696" y="220" width="246" height="360" rx="28" fill="#FFFFFF" fill-opacity="0.92" stroke="#102A43" stroke-opacity="0.08"/>
+  <text x="728" y="270" fill="#5A7184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.2">GENERATION LAYER</text>
+  <text x="728" y="326" fill="#102A43" font-family="Space Grotesk, Arial, sans-serif" font-size="32" font-weight="700">Synthetic engine</text>
+  <text x="728" y="378" fill="#102A43" font-family="IBM Plex Sans, Arial, sans-serif" font-size="22">GaussianCopulaSynthesizer</text>
+  <text x="728" y="414" fill="#5A7184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="20">plus scenario transformation layer</text>
+  <rect x="728" y="456" width="182" height="42" rx="21" fill="#F2E7CF"/>
+  <text x="757" y="483" fill="#7A5200" font-family="IBM Plex Sans, Arial, sans-serif" font-size="18" font-weight="700">Deterministic seeds</text>
+  <text x="728" y="536" fill="#102A43" font-family="IBM Plex Sans, Arial, sans-serif" font-size="20">Scenarios: distributed campus routing, community diversion, regional growth, ED surge.</text>
+
+  <rect x="982" y="220" width="248" height="360" rx="28" fill="#FFFFFF" fill-opacity="0.92" stroke="#102A43" stroke-opacity="0.08"/>
+  <text x="1014" y="270" fill="#5A7184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.2">EVALUATION LAYER</text>
+  <text x="1014" y="326" fill="#102A43" font-family="Space Grotesk, Arial, sans-serif" font-size="32" font-weight="700">Check and explain</text>
+  <rect x="1014" y="360" width="184" height="50" rx="18" fill="#DFF8EC"/>
+  <text x="1048" y="391" fill="#0F7C82" font-family="IBM Plex Sans, Arial, sans-serif" font-size="20" font-weight="700">Fidelity score</text>
+  <rect x="1014" y="426" width="184" height="50" rx="18" fill="#DFF8EC"/>
+  <text x="1052" y="457" fill="#0F7C82" font-family="IBM Plex Sans, Arial, sans-serif" font-size="20" font-weight="700">Privacy score</text>
+  <rect x="1014" y="492" width="184" height="50" rx="18" fill="#FFF2D6"/>
+  <text x="1048" y="523" fill="#9A6500" font-family="IBM Plex Sans, Arial, sans-serif" font-size="20" font-weight="700">Caution notes</text>
+
+  <rect x="1270" y="220" width="246" height="360" rx="28" fill="#102A43"/>
+  <text x="1302" y="270" fill="#AEEFD7" font-family="IBM Plex Sans, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.2">OUTPUT LAYER</text>
+  <text x="1302" y="326" fill="#F8FAFC" font-family="Space Grotesk, Arial, sans-serif" font-size="32" font-weight="700">Planning artifacts</text>
+  <text x="1302" y="376" fill="#E2E8F0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="22">Synthetic dataset preview</text>
+  <text x="1302" y="414" fill="#E2E8F0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="22">Pitch-ready summary</text>
+  <text x="1302" y="452" fill="#E2E8F0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="22">Downloadable ZIP package</text>
+  <text x="1302" y="490" fill="#E2E8F0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="22">Demo-ready screenshots and video</text>
+  <text x="1302" y="544" fill="#AEEFD7" font-family="IBM Plex Sans, Arial, sans-serif" font-size="19" font-weight="700">For innovation workshops, not clinical use</text>
+
+  <path d="M330 400H358" stroke="#0F7C82" stroke-width="8" stroke-linecap="round"/>
+  <path d="M648 400H684" stroke="#0F7C82" stroke-width="8" stroke-linecap="round"/>
+  <path d="M936 400H970" stroke="#0F7C82" stroke-width="8" stroke-linecap="round"/>
+  <path d="M1230 400H1258" stroke="#0F7C82" stroke-width="8" stroke-linecap="round"/>
+  <path d="M346 400L330 388V412L346 400Z" fill="#0F7C82" transform="translate(24 0)"/>
+  <path d="M670 400L654 388V412L670 400Z" fill="#0F7C82" transform="translate(24 0)"/>
+  <path d="M962 400L946 388V412L962 400Z" fill="#0F7C82" transform="translate(24 0)"/>
+  <path d="M1250 400L1234 388V412L1250 400Z" fill="#0F7C82" transform="translate(24 0)"/>
+
+  <rect x="84" y="638" width="1432" height="152" rx="28" fill="#FFFFFF" fill-opacity="0.84" stroke="#102A43" stroke-opacity="0.08"/>
+  <text x="120" y="688" fill="#5A7184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.2">SOUTHLAKE FUTURE-STATE QUESTIONS</text>
+  <text x="120" y="738" fill="#102A43" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24">How should care be distributed across campus, observation, transfer, and community-connected pathways?</text>
+  <text x="120" y="778" fill="#102A43" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24">How can innovation teams learn earlier, faster, and more safely before governed local data is required?</text>
+
+  <defs>
+    <linearGradient id="bg" x1="120" y1="120" x2="1480" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAF9"/>
+      <stop offset="0.55" stop-color="#EEF4F1"/>
+      <stop offset="1" stop-color="#F7F6EF"/>
+    </linearGradient>
+  </defs>
+</svg>

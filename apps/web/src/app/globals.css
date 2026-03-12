@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f7f4;
+  --foreground: #122735;
+  --ink: #102a43;
+  --muted: #5a7184;
+  --panel: rgba(255, 255, 255, 0.78);
+  --panel-strong: rgba(255, 255, 255, 0.92);
+  --stroke: rgba(16, 42, 67, 0.12);
+  --teal: #1bbab1;
+  --teal-deep: #0f7c82;
+  --sand: #f2e7cf;
+  --coral: #ff8b6b;
+  --mint: #dff8ec;
+  --shadow: 0 24px 80px rgba(16, 42, 67, 0.12);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(27, 186, 177, 0.22), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 139, 107, 0.2), transparent 26%),
+    linear-gradient(180deg, #f6faf9 0%, #eef4f1 42%, #f8f8f1 100%);
+  color: var(--foreground);
+  font-family: var(--font-body), sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.panel {
+  border: 1px solid var(--stroke);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+}
+
+.panel-strong {
+  background: var(--panel-strong);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid rgba(16, 42, 67, 0.12);
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0.45rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+  content: "";
+}
+
+.metric-card {
+  border: 1px solid rgba(16, 42, 67, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(223, 248, 236, 0.72));
+}
+
+.section-title {
+  font-family: var(--font-display), sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(16, 42, 67, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 42, 67, 0.03) 1px, transparent 1px);
+  background-size: 1.25rem 1.25rem;
+}

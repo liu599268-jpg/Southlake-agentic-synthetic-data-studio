@@ -1,0 +1,33 @@
+{
+  "id": "nhamcs_ed_2022_curated",
+  "name": "NHAMCS 2022 ED Operations Preset",
+  "source_name": "CDC/NCHS NHAMCS 2022 Emergency Department Public-Use File",
+  "source_url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NHAMCS/stata/ed2022-stata.zip",
+  "documentation_url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NHAMCS/doc22-ed-508.pdf",
+  "notes": "Curated operational subset derived from the 2022 NHAMCS emergency department public-use file. Use for demo synthesis only and preserve NCHS statistical-use cautions.",
+  "columns": [
+    "visit_month",
+    "visit_day_of_week",
+    "arrival_hour",
+    "wait_time_minutes",
+    "length_of_visit_minutes",
+    "age_years",
+    "sex",
+    "race_ethnicity",
+    "arrived_by_ambulance",
+    "transfer_in",
+    "triage_level",
+    "pain_scale",
+    "chronic_conditions_count",
+    "primary_reason",
+    "primary_payer",
+    "admitted_inpatient",
+    "admit_unit",
+    "observation_minutes",
+    "left_against_advice",
+    "discharge_disposition",
+    "visit_outcome"
+  ],
+  "row_count": 13085,
+  "readme_url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NHAMCS/readme2022.txt"
+}
