@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const workspaceRoot = path.resolve(__dirname, "..", "..", "..");
 const pitchAssetsDir = path.join(workspaceRoot, "pitch", "assets");
 const tempVideoDir = path.join(workspaceRoot, ".tmp", "pitch-video");
-const studioUrl = process.env.STUDIO_URL ?? "http://127.0.0.1:3000";
+const studioUrl = process.env.STUDIO_URL ?? "http://127.0.0.1:3100";
 
 const output = {
   preview: path.join(pitchAssetsDir, "preview.png"),
