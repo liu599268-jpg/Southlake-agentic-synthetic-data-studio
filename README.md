@@ -45,3 +45,4 @@ python services/synth-api/scripts/bootstrap_nhamcs_preset.py
 - The app ships with saved demo-run cards backed by `pitch/backup/demo_runs.json` for reliable pitch-day loading.
 - Rebuild the screenshots and backup video with `npm run capture:pitch-assets` once the frontend and API are both running locally.
 - Rebuild the deck with `python pitch/scripts/build_deck.py`, or use `pitch/scripts/build_and_export_deck.sh` to regenerate both the `.pptx` and Keynote-exported PDF.
+- Final pitch-execution materials live in `pitch/08-speaker-role-plan.md`, `pitch/09-timed-run-of-show.md`, `pitch/10-pitch-day-quick-reference.md`, and `pitch/11-source-citations.md`.

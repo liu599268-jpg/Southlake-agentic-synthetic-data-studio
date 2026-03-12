@@ -18,6 +18,11 @@
 - [x] Architecture and workflow graphic created
 - [x] Backup screen recording created
 - [x] Backup ZIP packages and reports copied into the pitch folder
+- [x] PowerPoint deck generated
+- [x] PDF deck backup generated
+- [x] Recommended speaker-role split documented
+- [x] Timed run-of-show documented
+- [x] Source citations compiled
 
 ### Partly Done
 
@@ -28,18 +33,16 @@
 
 ### Not Done Yet
 
-- [ ] Final division of speaking roles
+- [ ] Replace speaker placeholders with actual names
 - [ ] Final pitch-day laptop check
 
 ## What Still Needs To Be Built Or Finalized
 
-- Finalize the exact 3-slide deck design.
-- Decide whether one speaker or multiple speakers will handle the demo.
-- Save one or two best screenshots directly into the deck.
-- Insert the architecture graphic directly into Slide 1.
-- Insert the saved-run screenshot directly into Slide 2.
+- Final review of the actual slide visuals in the generated `.pptx`.
+- Replace `Presenter A/B/C` with actual names in `08-speaker-role-plan.md`.
 - Rehearse the explanation of why the source dataset is public and safe for demo use, but not Southlake-specific.
 - Rehearse the caution slide so the team sounds careful, not defensive.
+- Do one full dry run from app launch through Q and A.
 
 ## Pitch-Day Materials Checklist
 
@@ -51,7 +54,7 @@
 - [x] Screenshot backup
 - [x] Backup demo video
 - [x] Run artifact ZIP
-- [ ] Source citations and references
+- [x] Source citations and references
 - [ ] Printed or saved speaker notes
 
 ## Recommended File Set To Bring
@@ -62,6 +65,10 @@
 - `pitch/05-judge-qa.md`
 - `pitch/06-visual-assets.md`
 - `pitch/07-deck-production.md`
+- `pitch/08-speaker-role-plan.md`
+- `pitch/09-timed-run-of-show.md`
+- `pitch/10-pitch-day-quick-reference.md`
+- `pitch/11-source-citations.md`
 - `pitch/Southlake-Agentic-Synthetic-Data-Studio-Deck.pptx`
 - `pitch/Southlake-Agentic-Synthetic-Data-Studio-Deck.pdf`
 - `pitch/assets/architecture-workflow.svg`

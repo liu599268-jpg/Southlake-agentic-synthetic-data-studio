@@ -12,6 +12,10 @@ Use this folder as the working set for pitch-day prep.
 - `05-judge-qa.md`: likely judge questions and recommended answers
 - `06-visual-assets.md`: architecture graphic, screenshots, video, and backup-package guide
 - `07-deck-production.md`: how the actual PowerPoint and PDF are generated
+- `08-speaker-role-plan.md`: recommended speaking split for 2-person or 3-person teams
+- `09-timed-run-of-show.md`: minute-by-minute presentation plan with backup timing rules
+- `10-pitch-day-quick-reference.md`: startup commands, URLs, key claims, and fallback steps
+- `11-source-citations.md`: official source list for the brief, strategy, privacy, and dataset choices
 
 ## Generated Artifacts
 
