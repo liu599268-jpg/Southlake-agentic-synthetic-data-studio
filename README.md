@@ -1,6 +1,6 @@
 # Southlake Agentic Synthetic Data Studio
 
-Pitch-ready prototype for the Ivey Recruitment Hackathon Southlake brief. The app turns a curated emergency-department public-use dataset into synthetic planning data, evaluation reports, and a three-slide pitch summary focused on methodology, features, and cautions.
+Pitch-ready prototype for the Ivey Recruitment Hackathon Southlake brief. An agentic synthetic data studio powered by Claude (Anthropic) that turns a curated emergency-department public-use dataset into synthetic planning data, evaluation reports, and pitch-ready artifacts. Claude reasons at every pipeline step — framing intent, profiling data, deciding synthesis strategy, evaluating output quality (with retry capability), and generating planning narratives.
 
 ## Workspace Layout
 

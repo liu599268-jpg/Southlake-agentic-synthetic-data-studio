@@ -34,6 +34,7 @@ export type AgentStep = {
   id: string;
   name: string;
   summary: string;
+  reasoning: string;
   status: string;
 };
 

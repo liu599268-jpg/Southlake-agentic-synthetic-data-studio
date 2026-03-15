@@ -43,9 +43,9 @@ NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000 npm run dev -- --hostname 127.0.0
 
 ## Three Core Claims
 
-- This is a planning and innovation studio, not a clinical system.
+- This is an agentic planning studio — Claude reasons at every step, doesn't follow a fixed script.
 - The product is relevant to Southlake because it is built around distributed-health-network routing and closer-to-home care questions.
-- The value is not only synthetic data generation. The value is generation plus evaluation plus cautions plus exportable planning artifacts.
+- The value is not only synthetic data generation. The value is AI-powered reasoning plus evaluation plus self-correction plus exportable planning artifacts.
 
 ## Three Things Not To Claim
 

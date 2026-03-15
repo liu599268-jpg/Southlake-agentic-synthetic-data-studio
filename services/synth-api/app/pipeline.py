@@ -17,7 +17,7 @@ import numpy as np
 import pandas as pd
 
 from .config import PITCH_DIR, PRESET_CSV_PATH, PRESET_ID, PRESET_METADATA_PATH, RUNS_DIR
-from .llm_client import NarrativeClient
+from .llm_client import ReasoningClient
 from .models import (
     AgentStep,
     CautionReport,
@@ -464,7 +464,7 @@ def build_caution_report(
 
 
 def build_pitch_summary(
-    narrative_client: NarrativeClient,
+    reasoning_client: ReasoningClient,
     scenario: ScenarioPreset,
     plan: SynthesisPlan,
     evaluation: EvalReport,
@@ -482,7 +482,7 @@ def build_pitch_summary(
     ]
     caution_fallback = cautions.bullets[:3]
 
-    methodology = narrative_client.polish_bullets(
+    methodology = reasoning_client.polish_bullets(
         "Methodology",
         [
             f"Scenario: {scenario.name}",
@@ -492,12 +492,12 @@ def build_pitch_summary(
         ],
         methodology_fallback,
     )
-    features = narrative_client.polish_bullets(
+    features = reasoning_client.polish_bullets(
         "Important Features",
         scenario.pressure_notes,
         features_fallback,
     )
-    cautions = narrative_client.polish_bullets(
+    cautions = reasoning_client.polish_bullets(
         "Cautions",
         cautions.bullets,
         caution_fallback,
@@ -505,34 +505,47 @@ def build_pitch_summary(
     return PitchSummary(methodology=methodology, features=features, cautions=cautions)
 
 
-def build_timeline(profile: DatasetProfile, plan: SynthesisPlan, evaluation: EvalReport) -> list[AgentStep]:
-    return [
+def build_timeline(
+    profile: DatasetProfile,
+    plan: SynthesisPlan,
+    evaluation: EvalReport,
+    reasoning_traces: dict[str, str],
+    retry_count: int = 0,
+) -> list[AgentStep]:
+    steps = [
         AgentStep(
             id="intent",
             name="Intent Agent",
             summary=f"Framed the run for {plan.stakeholder.lower()} with goal: {plan.goal}",
+            reasoning=reasoning_traces.get("intent", ""),
         ),
         AgentStep(
             id="profile",
             name="Profile Agent",
             summary=f"Profiled {profile.row_count} rows across {profile.column_count} columns and flagged {len(profile.sensitive_columns)} sensitive columns.",
+            reasoning=reasoning_traces.get("profile", ""),
         ),
         AgentStep(
-            id="plan",
-            name="Plan Agent",
+            id="strategy",
+            name="Strategy Agent",
             summary=f"Selected {plan.model_name} with a target of {plan.target_rows} synthetic rows.",
+            reasoning=reasoning_traces.get("strategy", ""),
         ),
         AgentStep(
             id="evaluate",
             name="Evaluate Agent",
             summary=f"Scored fidelity {evaluation.fidelity_score}, privacy {evaluation.privacy_score}, and utility {evaluation.utility_score}.",
+            reasoning=reasoning_traces.get("evaluate", ""),
+            status="completed" if retry_count == 0 else f"completed after {retry_count} retry",
         ),
         AgentStep(
-            id="pitch",
-            name="Pitch Agent",
+            id="narrative",
+            name="Narrative Agent",
             summary="Generated planning, feature, and governance copy for the presentation deck.",
+            reasoning=reasoning_traces.get("narrative", ""),
         ),
     ]
+    return steps
 
 
 def _json_default(value: Any) -> Any:
@@ -599,6 +612,9 @@ def write_artifacts(
     }
 
 
+MAX_RETRIES = 1
+
+
 def run_pipeline(
     source_df: pd.DataFrame,
     source_info: PresetInfo,
@@ -606,17 +622,90 @@ def run_pipeline(
     goal: str,
     stakeholder: str,
 ) -> RunResponse:
+    reasoning_client = ReasoningClient()
+    reasoning_traces: dict[str, str] = {}
+
+    # Step 1: Intent Agent — frame the planning question
     source_df = sanitize_dataframe(source_df)
+    reasoning_traces["intent"] = reasoning_client.reason_intent(
+        goal=goal,
+        stakeholder=stakeholder,
+        scenario_name=scenario.name,
+        scenario_description=scenario.description,
+    )
+
+    # Step 2: Profile Agent — analyze the dataset
     profile = profile_dataframe(source_df, source_info.name)
+    reasoning_traces["profile"] = reasoning_client.reason_profile(
+        row_count=profile.row_count,
+        column_count=profile.column_count,
+        numeric_columns=profile.numeric_columns,
+        categorical_columns=profile.categorical_columns,
+        sensitive_columns=profile.sensitive_columns,
+        missingness=profile.missingness,
+        scenario_name=scenario.name,
+        stakeholder=stakeholder,
+    )
+
+    # Step 3: Strategy Agent — decide synthesis approach
     plan = build_plan(profile, scenario, goal, stakeholder)
-    synthetic_df = synthesize_dataframe(source_df, plan)
-    synthetic_df = sanitize_dataframe(synthetic_df)
-    synthetic_df = apply_scenario_transformations(synthetic_df, scenario)
-    evaluation = evaluate_synthetic(source_df, synthetic_df, scenario)
+    reasoning_traces["strategy"] = reasoning_client.reason_strategy(
+        row_count=profile.row_count,
+        column_count=profile.column_count,
+        target_rows=plan.target_rows,
+        model_name=plan.model_name,
+        scenario_name=scenario.name,
+        scenario_id=scenario.id,
+        goal=goal,
+        stakeholder=stakeholder,
+        missingness=profile.missingness,
+        sensitive_columns=profile.sensitive_columns,
+    )
+
+    # Step 4: Synthesize + Evaluate with retry loop
+    retry_count = 0
+    for attempt in range(MAX_RETRIES + 1):
+        synthetic_df = synthesize_dataframe(source_df, plan)
+        synthetic_df = sanitize_dataframe(synthetic_df)
+        synthetic_df = apply_scenario_transformations(synthetic_df, scenario)
+        evaluation = evaluate_synthetic(source_df, synthetic_df, scenario)
+
+        eval_reasoning, should_retry = reasoning_client.reason_evaluation(
+            fidelity_score=evaluation.fidelity_score,
+            privacy_score=evaluation.privacy_score,
+            utility_score=evaluation.utility_score,
+            exact_match_rate=evaluation.exact_match_rate,
+            numeric_similarity=evaluation.numeric_similarity,
+            categorical_similarity=evaluation.categorical_similarity,
+            scenario_name=scenario.name,
+            source_rows=profile.row_count,
+            synthetic_rows=int(len(synthetic_df)),
+            stakeholder=stakeholder,
+        )
+        reasoning_traces["evaluate"] = eval_reasoning
+
+        if not should_retry or attempt == MAX_RETRIES:
+            retry_count = attempt
+            break
+        retry_count = attempt + 1
+
+    # Step 5: Narrative Agent — generate pitch content
     cautions = build_caution_report(scenario, evaluation, source_info)
-    narrative_client = NarrativeClient()
-    pitch_summary = build_pitch_summary(narrative_client, scenario, plan, evaluation, cautions)
-    timeline = build_timeline(profile, plan, evaluation)
+    pitch_summary = build_pitch_summary(reasoning_client, scenario, plan, evaluation, cautions)
+    reasoning_traces["narrative"] = reasoning_client.reason_narrative(
+        scenario_name=scenario.name,
+        scenario_description=scenario.description,
+        model_name=plan.model_name,
+        target_rows=plan.target_rows,
+        stakeholder=stakeholder,
+        goal=goal,
+        fidelity_score=evaluation.fidelity_score,
+        privacy_score=evaluation.privacy_score,
+        caution_bullets=cautions.bullets,
+    )
+
+    # Build timeline with reasoning traces
+    timeline = build_timeline(profile, plan, evaluation, reasoning_traces, retry_count)
 
     run_id = uuid4().hex[:10]
     payload = RunResponse(

@@ -31,6 +31,7 @@ class AgentStep(BaseModel):
     id: str
     name: str
     summary: str
+    reasoning: str = ""
     status: str = "completed"
 
 

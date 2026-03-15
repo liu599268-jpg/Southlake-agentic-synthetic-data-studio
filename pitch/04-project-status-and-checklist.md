@@ -20,34 +20,33 @@
 - [x] Backup ZIP packages and reports copied into the pitch folder
 - [x] PowerPoint deck generated
 - [x] PDF deck backup generated
-- [x] Recommended speaker-role split documented
+- [x] Recommended speaker-role split documented (Zhou1, Zhou2, Huang)
 - [x] Timed run-of-show documented
 - [x] Source citations compiled
+- [x] Claude (Anthropic) agentic reasoning integrated at every pipeline step
+- [x] Reasoning traces visible in agent timeline UI
+- [x] Evaluate Agent retry loop implemented
+- [x] Technical explainer written for presenters (12-technical-explainer.md)
+- [x] Agentic explainer written for presenters (13-agentic-explainer.md)
+- [x] Data explainer written for presenters (14-data-explainer.md)
+- [x] Speaker scripts written with real names and exact talk tracks
+- [x] Judge Q&A updated with agentic and Claude-specific answers
 
-### Partly Done
+### Remaining
 
-- [ ] Final visual slide polish
-- [ ] Final speaker rehearsal
+- [ ] Rebuild 3-slide deck in Keynote with proper visual design
+- [ ] Re-generate demo runs with new agentic pipeline (with or without Anthropic key)
+- [ ] Update screenshots after new pipeline runs
+- [ ] Set up Anthropic API key in .env for live Claude reasoning
+- [ ] Final speaker rehearsal (all 3 presenters)
 - [ ] Final demo timing rehearsal
-- [ ] Judge Q and A prep rehearsal
-
-### Not Done Yet
-
-- [ ] Replace speaker placeholders with actual names
 - [ ] Final pitch-day laptop check
-
-## What Still Needs To Be Built Or Finalized
-
-- Final review of the actual slide visuals in the generated `.pptx`.
-- Replace `Presenter A/B/C` with actual names in `08-speaker-role-plan.md`.
-- Rehearse the explanation of why the source dataset is public and safe for demo use, but not Southlake-specific.
-- Rehearse the caution slide so the team sounds careful, not defensive.
-- Do one full dry run from app launch through Q and A.
+- [ ] One full timed dry run from app launch through Q&A
 
 ## Pitch-Day Materials Checklist
 
-- [x] Final 3-slide deck in PowerPoint format
-- [x] PDF backup of the same deck
+- [x] Final 3-slide deck (needs visual rebuild in Keynote)
+- [x] PDF backup of the deck
 - [ ] Live demo machine with local app working
 - [ ] Charger and adapter
 - [ ] Mobile hotspot backup if needed
@@ -57,25 +56,13 @@
 - [x] Source citations and references
 - [ ] Printed or saved speaker notes
 
-## Recommended File Set To Bring
+## Presenter Prep Checklist
 
-- `pitch/01-three-slide-deck.md`
-- `pitch/02-speaker-script.md`
-- `pitch/03-demo-runbook.md`
-- `pitch/05-judge-qa.md`
-- `pitch/06-visual-assets.md`
-- `pitch/07-deck-production.md`
-- `pitch/08-speaker-role-plan.md`
-- `pitch/09-timed-run-of-show.md`
-- `pitch/10-pitch-day-quick-reference.md`
-- `pitch/11-source-citations.md`
-- `pitch/Southlake-Agentic-Synthetic-Data-Studio-Deck.pptx`
-- `pitch/Southlake-Agentic-Synthetic-Data-Studio-Deck.pdf`
-- `pitch/assets/architecture-workflow.svg`
-- `pitch/assets/architecture-workflow.png`
-- `pitch/assets/full-run-page.png`
-- `pitch/assets/full-landing-page.png`
-- `pitch/assets/demo-walkthrough.webm`
-- `pitch/latest_summary.md`
-- `pitch/backup/primary-distributed-network.zip`
-- `pitch/backup/backup-ed-surge.zip`
+- [ ] All three have read `12-technical-explainer.md`
+- [ ] All three have read `13-agentic-explainer.md`
+- [ ] All three have read `14-data-explainer.md`
+- [ ] All three have read `02-speaker-script.md`
+- [ ] All three have read `05-judge-qa.md`
+- [ ] Zhou2 has practiced the demo click path 3+ times
+- [ ] Hand-off lines rehearsed at least twice
+- [ ] One full timed run-through completed

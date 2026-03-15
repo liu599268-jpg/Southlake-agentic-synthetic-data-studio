@@ -13,8 +13,14 @@ PITCH_BACKUP_DIR = PITCH_DIR / "backup"
 DEMO_RUN_MANIFEST_PATH = PITCH_BACKUP_DIR / "demo_runs.json"
 DATABASE_PATH = ARTIFACTS_ROOT / "runs.sqlite3"
 
+# LLM configuration — Claude (Anthropic) for agentic reasoning
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
+ANTHROPIC_MODEL = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
+
+# Legacy OpenAI config (kept for backward compatibility, unused in v2)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
+
 API_ORIGINS = [
     origin.strip()
     for origin in os.getenv(

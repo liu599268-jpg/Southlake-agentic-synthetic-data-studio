@@ -798,20 +798,41 @@ export function Studio() {
                 </div>
               </div>
 
-              <div className="mt-6 grid gap-4 lg:grid-cols-5">
-                {run.timeline.map((step) => (
-                  <div
-                    key={step.id}
-                    className="rounded-[1.6rem] border border-slate-900/8 bg-white/85 p-4"
-                  >
-                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                      {step.name}
+              <div className="mt-6">
+                <div className="mb-3 flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                    Agent reasoning timeline — powered by Claude
+                  </span>
+                </div>
+                <div className="grid gap-4 lg:grid-cols-5">
+                  {run.timeline.map((step) => (
+                    <div
+                      key={step.id}
+                      className="rounded-[1.6rem] border border-slate-900/8 bg-white/85 p-4"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                          {step.name}
+                        </div>
+                        {step.status !== "completed" && (
+                          <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[0.65rem] font-semibold text-amber-800">
+                            {step.status}
+                          </span>
+                        )}
+                      </div>
+                      {step.reasoning ? (
+                        <p className="mt-3 text-sm italic leading-6 text-slate-600">
+                          &ldquo;{step.reasoning}&rdquo;
+                        </p>
+                      ) : (
+                        <p className="mt-3 text-sm leading-6 text-slate-700">
+                          {step.summary}
+                        </p>
+                      )}
                     </div>
-                    <p className="mt-3 text-sm leading-6 text-slate-700">
-                      {step.summary}
-                    </p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
