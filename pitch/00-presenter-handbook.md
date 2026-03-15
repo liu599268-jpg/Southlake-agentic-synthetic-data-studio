@@ -92,21 +92,23 @@ The app now exposes this as a saved demo run on the home screen, so the team can
 
 Recommended primary run:
 
-- Run ID: `72c9c81912`
+- Run ID: `6a1dbd99e0`
 - Scenario: `Distributed Campus Routing`
 - Fidelity: `81.54`
 - Privacy: `100.0`
 - Utility: `88.92`
 - Synthetic rows: `13,085`
+- ✅ Full agentic reasoning traces at all 5 agent steps
 
 Recommended backup run:
 
-- Run ID: `fc0b94e404`
+- Run ID: `bf7b40f010`
 - Scenario: `ED Surge`
 - Fidelity: `78.97`
 - Privacy: `100.0`
 - Utility: `87.38`
 - Synthetic rows: `17,010`
+- ✅ Full agentic reasoning traces at all 5 agent steps
 
 ## 9. What Presenters Must Not Claim
 

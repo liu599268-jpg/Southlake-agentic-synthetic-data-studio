@@ -1,8 +1,8 @@
-# Southlake Pitch Draft d4f15b0bbd
+# Southlake Pitch Draft bf7b40f010
 
 ## Methodology
-- Loaded a curated NHAMCS emergency dataset and profiled its operational schema for network operations team planning work.
-- Used GaussianCopulaSynthesizer to synthesize 13085 rows, then applied a distributed campus routing layer tied to Southlake's distributed-network future state.
+- Loaded a curated NHAMCS emergency dataset and profiled its operational schema for emergency operations lead planning work.
+- Used GaussianCopulaSynthesizer to synthesize 17010 rows, then applied a ed surge layer tied to Southlake's distributed-network future state.
 - Evaluated the result on fidelity, leakage risk, and scenario plausibility before generating pitch-ready planning artifacts.
 
 ## Features

@@ -27,19 +27,21 @@ NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000 npm run dev -- --hostname 127.0.0
 ## Primary Demo
 
 - Action: click `Load recommended demo run`
-- Run ID: `72c9c81912`
+- Run ID: `6a1dbd99e0`
 - Scenario: `Distributed Campus Routing`
 - Fidelity: `81.54`
 - Privacy: `100.0`
 - Utility: `88.92`
+- ✅ Full agentic reasoning traces at all 5 steps
 
 ## Backup Demo
 
-- Run ID: `fc0b94e404`
+- Run ID: `bf7b40f010`
 - Scenario: `ED Surge`
 - Fidelity: `78.97`
 - Privacy: `100.0`
 - Utility: `87.38`
+- ✅ Full agentic reasoning traces at all 5 steps
 
 ## Three Core Claims
 

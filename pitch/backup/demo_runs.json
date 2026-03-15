@@ -1,16 +1,16 @@
 [
   {
-    "run_id": "72c9c81912",
+    "run_id": "6a1dbd99e0",
     "label": "Primary live demo",
     "story_angle": "Distributed health network",
-    "summary": "Best on-stage story for Southlake. Preserves volume while shifting observation, handoff, and discharge pathways across a distributed-health-network scenario.",
-    "screenshot_path": "/Users/haoranliu/Desktop/southlake-agentic-synthetic-data/pitch/assets/full-run-page.png"
+    "summary": "Best on-stage story for Southlake. Preserves volume while shifting observation, handoff, and discharge pathways across a distributed-health-network scenario. Full agentic reasoning traces at every step.",
+    "screenshot_path": null
   },
   {
-    "run_id": "fc0b94e404",
+    "run_id": "bf7b40f010",
     "label": "Backup capacity walk-through",
     "story_angle": "ED resilience",
-    "summary": "Fallback story if judges want a more familiar operations example. Highlights surge pressure, ambulance mix, and throughput stress without using local patient records.",
+    "summary": "Fallback story if judges want a more familiar operations example. Highlights surge pressure, ambulance mix, and throughput stress with visible AI reasoning throughout.",
     "screenshot_path": null
   }
 ]

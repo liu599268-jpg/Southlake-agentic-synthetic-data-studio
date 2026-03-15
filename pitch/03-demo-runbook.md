@@ -38,20 +38,21 @@ Use this exact setup for the live demo.
 
 ### Primary
 
-- Run ID: `72c9c81912`
+- Run ID: `6a1dbd99e0`
 - Scenario: `Distributed Campus Routing`
 - Fidelity: `81.54`
 - Privacy: `100.0`
 - Utility: `88.92`
-- Screenshot: `assets/full-run-page.png`
+- ✅ Full agentic reasoning traces
 
 ### Backup
 
-- Run ID: `fc0b94e404`
+- Run ID: `bf7b40f010`
 - Scenario: `ED Surge`
 - Fidelity: `78.97`
 - Privacy: `100.0`
 - Utility: `87.38`
+- ✅ Full agentic reasoning traces
 
 ## Optional Fresh-Run Path
 
