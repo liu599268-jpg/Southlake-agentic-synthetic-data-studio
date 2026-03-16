@@ -5,28 +5,39 @@
 <meta name="viewport" content="width=1920, height=1080">
 <title>Southlake Agentic Synthetic Data Studio — Pitch Deck</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --bg: #f4f7f4;
-    --ink: #0f2b3c;
-    --muted: #5a7184;
-    --teal: #1bbab1;
-    --teal-deep: #0f7c82;
-    --coral: #ff8b6b;
-    --mint: #dff8ec;
-    --sand: #f2e7cf;
+    --deep: #0a2540;
+    --navy: #1a3a5c;
+    --blue: #2563eb;
+    --blue-soft: #3b82f6;
+    --sky: #dbeafe;
+    --sky-light: #eff6ff;
+    --teal: #0d9488;
+    --teal-light: #ccfbf1;
+    --green: #059669;
+    --green-light: #d1fae5;
     --white: #ffffff;
-    --panel: rgba(255,255,255,0.88);
-    --stroke: rgba(16,42,67,0.10);
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-900: #0f172a;
+    --coral: #f97316;
+    --red-soft: #fee2e2;
+    --red: #dc2626;
   }
 
   body {
-    font-family: 'IBM Plex Sans', sans-serif;
-    color: var(--ink);
-    background: var(--bg);
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--gray-900);
+    background: var(--gray-50);
     overflow: hidden;
   }
 
@@ -39,408 +50,476 @@
     margin-bottom: 40px;
   }
 
+  /* ===== COMMON ELEMENTS ===== */
+  .slide-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .slide-num {
+    position: absolute;
+    top: 44px;
+    right: 64px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-400);
+    letter-spacing: 0.05em;
+  }
+
   /* ===== SLIDE 1: METHODOLOGY ===== */
   .s1 {
-    background:
-      radial-gradient(circle at 0% 0%, rgba(27,186,177,0.18), transparent 35%),
-      radial-gradient(circle at 100% 100%, rgba(255,139,107,0.14), transparent 30%),
-      linear-gradient(160deg, #f6faf9 0%, #eef4f1 50%, #f8f8f1 100%);
+    background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 40%, #f0fdf4 100%);
   }
 
-  .s1 .grid-overlay {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(16,42,67,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(16,42,67,0.025) 1px, transparent 1px);
-    background-size: 24px 24px;
-    pointer-events: none;
+  .s1 .accent-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--blue), var(--teal), var(--green));
   }
 
-  .slide-number {
-    position: absolute; top: 48px; right: 64px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 15px; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted);
+  .s1 .top-row {
+    position: absolute;
+    top: 44px; left: 64px; right: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .s1 .eyebrow {
-    position: absolute; top: 48px; left: 64px;
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 8px 16px;
-    border: 1px solid var(--stroke);
-    background: rgba(255,255,255,0.7);
-    font-size: 13px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--muted);
-    border-radius: 6px;
+  .s1 .badge-method {
+    background: var(--sky);
+    color: var(--blue);
   }
-  .s1 .eyebrow::before {
-    content: ''; width: 8px; height: 8px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+  .s1 .badge-method::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--blue);
   }
 
-  .s1 .title-block {
-    position: absolute; top: 120px; left: 64px; right: 520px;
-  }
-  .s1 .title-block h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 52px; font-weight: 700;
-    letter-spacing: -0.04em; line-height: 1.12;
-    color: var(--ink);
-  }
-  .s1 .title-block .subtitle {
-    margin-top: 20px;
-    font-size: 19px; line-height: 1.7;
-    color: var(--muted); max-width: 800px;
+  .s1 .content-area {
+    position: absolute;
+    top: 100px; left: 64px; right: 64px; bottom: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 28px;
   }
 
-  .s1 .flow-container {
-    position: absolute; top: 360px; left: 64px; right: 64px;
-    display: flex; gap: 16px;
+  .s1 .title-section {
+    grid-column: 1;
+    grid-row: 1;
   }
-  .s1 .flow-step {
-    flex: 1;
-    background: var(--panel);
-    border: 1px solid var(--stroke);
-    border-radius: 24px;
-    padding: 28px 24px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(16,42,67,0.06);
-    position: relative;
+  .s1 .title-section h1 {
+    font-size: 44px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--deep);
   }
-  .s1 .flow-step .step-number {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 36px; height: 36px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--teal), var(--teal-deep));
-    color: white; font-family: 'Space Grotesk'; font-weight: 700; font-size: 15px;
-    margin-bottom: 14px;
+  .s1 .title-section p {
+    margin-top: 16px;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--gray-600);
+    max-width: 620px;
   }
-  .s1 .flow-step h3 {
-    font-family: 'Space Grotesk'; font-size: 20px; font-weight: 700;
-    letter-spacing: -0.02em; color: var(--ink); margin-bottom: 8px;
-  }
-  .s1 .flow-step p {
-    font-size: 14px; line-height: 1.65; color: var(--muted);
-  }
-  .s1 .flow-step .ai-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    margin-top: 12px; padding: 4px 10px;
+
+  .s1 .core-box {
+    grid-column: 2;
+    grid-row: 1;
+    background: var(--deep);
     border-radius: 20px;
-    background: linear-gradient(135deg, rgba(27,186,177,0.12), rgba(15,124,130,0.08));
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--teal-deep);
+    padding: 28px 30px;
+    color: white;
+    align-self: start;
   }
-  .s1 .flow-step .ai-badge::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
+  .s1 .core-box .cb-label {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .s1 .core-box p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.88);
+  }
+  .s1 .core-box strong { color: #5eead4; }
+
+  .s1 .flow-section {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .s1 .flow-card {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 22px 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .s1 .flow-card .fc-top {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px;
+  }
+  .s1 .flow-card .fc-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--teal));
+    color: white; font-weight: 700; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .s1 .flow-card h3 {
+    font-size: 16px; font-weight: 700;
+    color: var(--deep);
+  }
+  .s1 .flow-card p {
+    font-size: 13px; line-height: 1.55;
+    color: var(--gray-500);
+  }
+  .s1 .flow-card .fc-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin-top: 10px; padding: 3px 10px;
+    border-radius: 100px;
+    background: var(--teal-light);
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--teal);
+  }
+  .s1 .flow-card .fc-tag::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
     background: var(--teal);
   }
 
   .s1 .flow-arrow {
-    display: flex; align-items: center; justify-content: center;
-    width: 24px; flex-shrink: 0; color: var(--teal);
-    font-size: 24px; font-weight: 700;
+    font-size: 20px; color: var(--gray-400); flex-shrink: 0;
   }
 
-  .s1 .bottom-bar {
-    position: absolute; bottom: 48px; left: 64px; right: 64px;
-    display: flex; gap: 20px;
+  .s1 .bottom-strip {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: flex;
+    gap: 16px;
+    align-self: end;
   }
-  .s1 .bottom-card {
-    flex: 1; padding: 20px 24px;
-    border-radius: 18px;
-    background: var(--ink);
-    color: rgba(255,255,255,0.9);
+  .s1 .bottom-strip .bs-card {
+    flex: 1;
+    padding: 16px 20px;
+    border-radius: 14px;
+    border: 1px solid var(--gray-200);
+    background: white;
   }
-  .s1 .bottom-card .label {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.14em; color: rgba(255,255,255,0.5); margin-bottom: 8px;
+  .s1 .bottom-strip .bs-label {
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    margin-bottom: 6px;
   }
-  .s1 .bottom-card p { font-size: 14px; line-height: 1.6; }
-
-  .s1 .core-message {
-    position: absolute; top: 120px; right: 64px; width: 400px;
-    padding: 32px 28px; border-radius: 28px;
-    background: var(--ink); color: white;
-    box-shadow: 0 24px 60px rgba(16,42,67,0.18);
-  }
-  .s1 .core-message .cm-label {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.16em; color: var(--teal); margin-bottom: 16px;
-  }
-  .s1 .core-message p {
-    font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.88);
+  .s1 .bottom-strip .bs-card p {
+    font-size: 13px; line-height: 1.5; color: var(--gray-600);
   }
 
-  /* ===== SLIDE 2: FEATURES ===== */
+  /* ===== SLIDE 2: FEATURES + DEMO ===== */
   .s2 {
-    background:
-      radial-gradient(circle at 100% 0%, rgba(27,186,177,0.15), transparent 30%),
-      radial-gradient(circle at 0% 100%, rgba(255,139,107,0.1), transparent 25%),
-      linear-gradient(160deg, #f6faf9 0%, #eef4f1 50%, #f8f8f1 100%);
+    background: linear-gradient(160deg, #f0f7ff 0%, #f8fafc 50%, #f0fdf4 100%);
   }
-  .s2 .grid-overlay {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(16,42,67,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(16,42,67,0.025) 1px, transparent 1px);
-    background-size: 24px 24px;
+
+  .s2 .accent-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--blue), var(--teal), var(--green));
+  }
+
+  .s2 .top-row {
+    position: absolute;
+    top: 44px; left: 64px; right: 64px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .s2 .badge-feat {
+    background: var(--green-light);
+    color: var(--green);
+  }
+  .s2 .badge-feat::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
   }
 
   .s2 .left-col {
-    position: absolute; top: 48px; left: 64px; width: 560px;
-  }
-  .s2 .left-col .eyebrow {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 8px 16px;
-    border: 1px solid var(--stroke); background: rgba(255,255,255,0.7);
-    font-size: 13px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--muted); border-radius: 6px;
-  }
-  .s2 .left-col .eyebrow::before {
-    content: ''; width: 8px; height: 8px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+    position: absolute;
+    top: 100px; left: 64px; width: 520px; bottom: 64px;
+    display: flex; flex-direction: column;
   }
   .s2 .left-col h1 {
-    font-family: 'Space Grotesk'; font-size: 48px; font-weight: 700;
-    letter-spacing: -0.04em; line-height: 1.12; margin-top: 24px;
+    font-size: 42px; font-weight: 800;
+    line-height: 1.12; letter-spacing: -0.03em;
+    color: var(--deep);
   }
-  .s2 .left-col .subtitle {
-    margin-top: 16px; font-size: 17px; line-height: 1.7; color: var(--muted);
+  .s2 .left-col .sub {
+    margin-top: 14px;
+    font-size: 16px; line-height: 1.6; color: var(--gray-500);
   }
 
-  .s2 .feature-grid {
-    position: absolute; top: 360px; left: 64px; width: 560px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  .s2 .feat-grid {
+    margin-top: 28px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; flex: 1;
   }
-  .s2 .feature-card {
-    padding: 24px; border-radius: 22px;
-    background: var(--panel); border: 1px solid var(--stroke);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 6px 24px rgba(16,42,67,0.05);
+  .s2 .feat-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    display: flex; flex-direction: column;
   }
-  .s2 .feature-card .icon {
-    width: 40px; height: 40px; border-radius: 12px;
+  .s2 .feat-card .fi {
+    width: 36px; height: 36px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 20px; margin-bottom: 12px;
+    font-size: 18px; margin-bottom: 10px;
   }
-  .s2 .feature-card h3 {
-    font-family: 'Space Grotesk'; font-size: 17px; font-weight: 700;
-    letter-spacing: -0.02em; margin-bottom: 8px;
+  .s2 .feat-card h3 {
+    font-size: 15px; font-weight: 700; color: var(--deep);
+    margin-bottom: 6px;
   }
-  .s2 .feature-card p {
-    font-size: 13px; line-height: 1.6; color: var(--muted);
+  .s2 .feat-card p {
+    font-size: 12px; line-height: 1.55; color: var(--gray-500);
   }
+
+  .s2 .finly-note {
+    margin-top: auto;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: var(--deep);
+    color: rgba(255,255,255,0.85);
+    font-size: 12px; line-height: 1.55;
+  }
+  .s2 .finly-note strong { color: #5eead4; }
 
   .s2 .demo-panel {
-    position: absolute; top: 48px; right: 64px; bottom: 48px;
-    width: 700px; border-radius: 28px;
-    background: var(--ink);
-    box-shadow: 0 24px 60px rgba(16,42,67,0.2);
-    padding: 32px;
-    overflow: hidden;
+    position: absolute;
+    top: 100px; left: 620px; right: 64px; bottom: 64px;
+    border-radius: 20px;
+    background: var(--deep);
+    box-shadow: 0 20px 60px rgba(10,37,64,0.25);
+    padding: 28px;
+    display: flex; flex-direction: column;
   }
-  .s2 .demo-panel .dp-label {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.16em; color: var(--teal); margin-bottom: 20px;
+  .s2 .dp-label {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #5eead4;
+    margin-bottom: 16px;
   }
-  .s2 .demo-metric-row {
-    display: flex; gap: 12px; margin-bottom: 20px;
+  .s2 .metric-row {
+    display: flex; gap: 10px; margin-bottom: 16px;
   }
-  .s2 .demo-metric {
-    flex: 1; padding: 18px; border-radius: 16px;
+  .s2 .metric {
+    flex: 1; padding: 14px 16px; border-radius: 12px;
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.08);
   }
-  .s2 .demo-metric .label {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.12em; color: rgba(255,255,255,0.45);
+  .s2 .metric .m-label {
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
   }
-  .s2 .demo-metric .value {
-    font-family: 'Space Grotesk'; font-size: 36px; font-weight: 700;
-    color: white; margin-top: 4px;
-  }
-
-  .s2 .agent-timeline {
-    margin-top: 16px;
-  }
-  .s2 .agent-timeline .at-label {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.12em; color: rgba(255,255,255,0.45);
-    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
-  }
-  .s2 .agent-timeline .at-label::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--teal); animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-  .s2 .agent-step-row {
-    display: flex; gap: 10px; margin-bottom: 8px;
-  }
-  .s2 .agent-step-card {
-    flex: 1; padding: 14px 16px; border-radius: 14px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-  .s2 .agent-step-card .name {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.1em; color: var(--teal);
-  }
-  .s2 .agent-step-card .trace {
-    font-size: 12px; line-height: 1.55;
-    color: rgba(255,255,255,0.65); font-style: italic;
-    margin-top: 6px;
+  .s2 .metric .m-val {
+    font-size: 32px; font-weight: 800;
+    color: white; margin-top: 2px;
   }
 
-  .s2 .demo-run-badge {
-    position: absolute; bottom: 32px; left: 32px; right: 32px;
-    padding: 16px 20px; border-radius: 14px;
-    background: rgba(27,186,177,0.1);
-    border: 1px solid rgba(27,186,177,0.2);
+  .s2 .demo-screenshot {
+    flex: 1;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+  }
+  .s2 .demo-screenshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .s2 .demo-screenshot .overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 16px 20px;
+    background: linear-gradient(transparent, rgba(10,37,64,0.95));
     display: flex; justify-content: space-between; align-items: center;
   }
-  .s2 .demo-run-badge .run-info {
+  .s2 .demo-screenshot .overlay .info {
     font-size: 13px; color: rgba(255,255,255,0.7);
   }
-  .s2 .demo-run-badge .run-info strong {
-    color: var(--teal); font-weight: 600;
+  .s2 .demo-screenshot .overlay .info strong {
+    color: #5eead4;
   }
-  .s2 .demo-run-badge .download-btn {
-    padding: 8px 18px; border-radius: 10px;
+  .s2 .demo-screenshot .dl-btn {
+    padding: 8px 18px; border-radius: 8px;
     background: var(--teal); color: white;
-    font-size: 12px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
   }
 
   /* ===== SLIDE 3: CAUTIONS ===== */
   .s3 {
-    background:
-      radial-gradient(circle at 50% 0%, rgba(27,186,177,0.12), transparent 35%),
-      linear-gradient(180deg, #f6faf9 0%, #f0f4f2 100%);
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
   }
-  .s3 .grid-overlay {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(16,42,67,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(16,42,67,0.025) 1px, transparent 1px);
-    background-size: 24px 24px;
+
+  .s3 .accent-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--blue), var(--teal), var(--green));
+  }
+
+  .s3 .top-row {
+    position: absolute;
+    top: 44px; left: 64px; right: 64px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .s3 .badge-caution {
+    background: var(--red-soft);
+    color: var(--red);
+  }
+  .s3 .badge-caution::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--red);
   }
 
   .s3 .header {
-    position: absolute; top: 48px; left: 64px; right: 64px;
-    display: flex; justify-content: space-between; align-items: flex-start;
-  }
-  .s3 .header .left {
-    max-width: 900px;
-  }
-  .s3 .header .eyebrow {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 8px 16px;
-    border: 1px solid var(--stroke); background: rgba(255,255,255,0.7);
-    font-size: 13px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--muted); border-radius: 6px;
-  }
-  .s3 .header .eyebrow::before {
-    content: ''; width: 8px; height: 8px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--coral), #e06040);
+    position: absolute;
+    top: 100px; left: 64px; right: 64px;
   }
   .s3 .header h1 {
-    font-family: 'Space Grotesk'; font-size: 48px; font-weight: 700;
-    letter-spacing: -0.04em; line-height: 1.12; margin-top: 24px;
+    font-size: 42px; font-weight: 800;
+    line-height: 1.12; letter-spacing: -0.03em;
+    color: var(--deep);
   }
-  .s3 .header .subtitle {
-    margin-top: 14px; font-size: 17px; line-height: 1.7; color: var(--muted);
-    max-width: 720px;
+  .s3 .header p {
+    margin-top: 12px;
+    font-size: 17px; line-height: 1.6;
+    color: var(--gray-500);
+    max-width: 800px;
   }
 
   .s3 .columns {
-    position: absolute; top: 300px; left: 64px; right: 64px;
-    display: flex; gap: 24px;
+    position: absolute;
+    top: 270px; left: 64px; right: 64px;
+    display: flex; gap: 28px;
   }
 
   .s3 .col-good {
-    flex: 1; padding: 36px 32px; border-radius: 28px;
-    background: var(--panel); border: 1px solid var(--stroke);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(16,42,67,0.06);
+    flex: 1;
+    background: white;
+    border: 2px solid var(--green-light);
+    border-radius: 20px;
+    padding: 30px;
   }
-  .s3 .col-good .col-header {
-    display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+  .s3 .col-good .col-h {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
   }
-  .s3 .col-good .col-header .dot {
-    width: 12px; height: 12px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+  .s3 .col-good .col-h .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--green);
   }
-  .s3 .col-good .col-header h2 {
-    font-family: 'Space Grotesk'; font-size: 28px; font-weight: 700;
-    letter-spacing: -0.03em; color: var(--teal-deep);
+  .s3 .col-good .col-h h2 {
+    font-size: 24px; font-weight: 800;
+    color: var(--green); letter-spacing: -0.02em;
   }
   .s3 .col-good .item {
-    padding: 16px 20px; border-radius: 16px;
-    background: linear-gradient(180deg, rgba(223,248,236,0.7), rgba(223,248,236,0.3));
-    border: 1px solid rgba(27,186,177,0.12);
-    margin-bottom: 12px;
-    font-size: 15px; line-height: 1.6; color: var(--ink);
+    padding: 14px 18px; border-radius: 12px;
+    background: var(--green-light);
+    margin-bottom: 10px;
+    font-size: 15px; line-height: 1.5;
+    color: var(--gray-700);
   }
 
   .s3 .col-not {
-    flex: 1; padding: 36px 32px; border-radius: 28px;
-    background: var(--ink);
-    box-shadow: 0 8px 32px rgba(16,42,67,0.15);
+    flex: 1;
+    background: var(--deep);
+    border-radius: 20px;
+    padding: 30px;
   }
-  .s3 .col-not .col-header {
-    display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+  .s3 .col-not .col-h {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
   }
-  .s3 .col-not .col-header .dot {
-    width: 12px; height: 12px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--coral), #e06040);
+  .s3 .col-not .col-h .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--coral);
   }
-  .s3 .col-not .col-header h2 {
-    font-family: 'Space Grotesk'; font-size: 28px; font-weight: 700;
-    letter-spacing: -0.03em; color: var(--coral);
+  .s3 .col-not .col-h h2 {
+    font-size: 24px; font-weight: 800;
+    color: var(--coral); letter-spacing: -0.02em;
   }
   .s3 .col-not .item {
-    padding: 16px 20px; border-radius: 16px;
-    background: rgba(255,255,255,0.05);
+    padding: 14px 18px; border-radius: 12px;
+    background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.06);
-    margin-bottom: 12px;
-    font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.85);
+    margin-bottom: 10px;
+    font-size: 15px; line-height: 1.5;
+    color: rgba(255,255,255,0.85);
   }
 
-  .s3 .bottom-message {
-    position: absolute; bottom: 48px; left: 64px; right: 64px;
+  .s3 .bottom-row {
+    position: absolute;
+    bottom: 64px; left: 64px; right: 64px;
     display: flex; gap: 20px;
   }
   .s3 .next-step {
-    flex: 2; padding: 24px 28px; border-radius: 22px;
-    background: linear-gradient(135deg, rgba(27,186,177,0.08), rgba(15,124,130,0.04));
-    border: 1px solid rgba(27,186,177,0.15);
+    flex: 2;
+    padding: 22px 26px;
+    border-radius: 16px;
+    background: white;
+    border: 2px solid var(--sky);
   }
-  .s3 .next-step .label {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.14em; color: var(--teal-deep); margin-bottom: 8px;
+  .s3 .next-step .ns-label {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    margin-bottom: 8px;
   }
   .s3 .next-step p {
-    font-size: 16px; line-height: 1.6; color: var(--ink);
-  }
-  .s3 .credibility-note {
-    flex: 1; padding: 24px 28px; border-radius: 22px;
-    background: var(--ink); color: rgba(255,255,255,0.8);
-  }
-  .s3 .credibility-note .label {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.14em; color: var(--coral); margin-bottom: 8px;
-  }
-  .s3 .credibility-note p {
-    font-size: 14px; line-height: 1.6;
+    font-size: 15px; line-height: 1.55; color: var(--gray-600);
   }
 
-  /* Print / export styles */
+  .s3 .trust-note {
+    flex: 1;
+    padding: 22px 26px;
+    border-radius: 16px;
+    background: var(--deep);
+    color: rgba(255,255,255,0.85);
+  }
+  .s3 .trust-note .tn-label {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--coral);
+    margin-bottom: 8px;
+  }
+  .s3 .trust-note p {
+    font-size: 14px; line-height: 1.55;
+  }
+
   @media print {
     body { background: white; }
     .slide { margin: 0; page-break-after: always; }
@@ -451,186 +530,166 @@
 
 <!-- ==================== SLIDE 1: METHODOLOGY ==================== -->
 <div class="slide s1">
-  <div class="grid-overlay"></div>
-  <div class="eyebrow">Southlake Agentic Synthetic Data Studio · Reasoning powered by theFinlyApp</div>
-  <div class="slide-number">Methodology — 1/3</div>
-
-  <div class="title-block">
-    <h1>From Public ED Data to<br>Southlake Future-State<br>Planning Scenarios</h1>
-    <p class="subtitle">An agentic workflow — with reasoning and analysis technically supported by theFinlyApp — that turns safe public emergency department data into synthetic planning artifacts, then makes the limitations visible before anyone over-trusts the output.</p>
+  <div class="accent-bar"></div>
+  <div class="top-row">
+    <div class="slide-badge badge-method">Southlake Agentic Synthetic Data Studio</div>
+    <div class="slide-num">Methodology — 1 / 3</div>
   </div>
 
-  <div class="core-message">
-    <div class="cm-label">Core Message for Judges</div>
-    <p>The emphasis is on <strong style="color:var(--teal)">how the system thinks and acts</strong>, not just the data it produces. The agentic reasoning and analysis engine is technically supported by <strong style="color:var(--teal)">theFinlyApp</strong> — powering every step from intent framing to quality evaluation.</p>
-  </div>
+  <div class="content-area">
+    <div class="title-section">
+      <h1>From Public ED Data<br>to Southlake Future-State<br>Planning Scenarios</h1>
+      <p>An agentic workflow — with reasoning and analysis technically supported by <strong>theFinlyApp</strong> — that turns safe public emergency department data into synthetic planning artifacts, then makes the limitations visible.</p>
+    </div>
 
-  <div class="flow-container">
-    <div class="flow-step">
-      <div class="step-number">1</div>
-      <h3>Intent Agent</h3>
-      <p>Interprets the stakeholder's planning goal and frames it as a specific operational question for synthesis.</p>
-      <div class="ai-badge">LLM reasoning</div>
+    <div class="core-box">
+      <div class="cb-label">What Judges Should Know</div>
+      <p>The emphasis is on <strong>how the system thinks and acts</strong>, not just the data it produces. The agentic reasoning engine is technically supported by theFinlyApp — powering every step from intent framing to quality evaluation and self-correction.</p>
     </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-      <div class="step-number">2</div>
-      <h3>Profile Agent</h3>
-      <p>Analyzes dataset quality, identifies sensitive columns, flags missingness, and recommends focus areas.</p>
-      <div class="ai-badge">LLM reasoning</div>
-    </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-      <div class="step-number">3</div>
-      <h3>Strategy Agent</h3>
-      <p>Decides synthesis approach, target rows, and constraints. This is the key decision step — not scripted.</p>
-      <div class="ai-badge">LLM decides</div>
-    </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-      <div class="step-number">4</div>
-      <h3>Evaluate Agent</h3>
-      <p>Scores fidelity, privacy, and utility. Can trigger a retry if quality is below threshold — self-correction loop.</p>
-      <div class="ai-badge">LLM evaluates</div>
-    </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-      <div class="step-number">5</div>
-      <h3>Narrative Agent</h3>
-      <p>Crafts planning summaries tailored to the scenario, stakeholder, and evaluation results.</p>
-      <div class="ai-badge">LLM narrates</div>
-    </div>
-  </div>
 
-  <div class="bottom-bar">
-    <div class="bottom-card">
-      <div class="label">Input</div>
-      <p>Curated CDC/NCHS NHAMCS 2022 public ED dataset — 13,085 visits, 21 operational columns</p>
+    <div class="flow-section">
+      <div class="flow-card">
+        <div class="fc-top"><div class="fc-num">1</div><h3>Intent Agent</h3></div>
+        <p>Interprets the stakeholder's planning goal and frames it as a specific operational question.</p>
+        <div class="fc-tag">AI reasoning</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-card">
+        <div class="fc-top"><div class="fc-num">2</div><h3>Profile Agent</h3></div>
+        <p>Analyzes dataset quality, identifies sensitive columns, flags missingness.</p>
+        <div class="fc-tag">AI reasoning</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-card">
+        <div class="fc-top"><div class="fc-num">3</div><h3>Strategy Agent</h3></div>
+        <p>Decides synthesis approach, target rows, and constraints — not scripted.</p>
+        <div class="fc-tag">AI decides</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-card">
+        <div class="fc-top"><div class="fc-num">4</div><h3>Evaluate Agent</h3></div>
+        <p>Scores fidelity, privacy, utility. Triggers retry if quality is below threshold.</p>
+        <div class="fc-tag">AI self-corrects</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-card">
+        <div class="fc-top"><div class="fc-num">5</div><h3>Narrative Agent</h3></div>
+        <p>Crafts planning summaries tailored to the scenario and audience.</p>
+        <div class="fc-tag">AI narrates</div>
+      </div>
     </div>
-    <div class="bottom-card">
-      <div class="label">Southlake Lens</div>
-      <p>Distributed campus routing · Community diversion · Regional growth · ED surge</p>
-    </div>
-    <div class="bottom-card">
-      <div class="label">Output</div>
-      <p>Synthetic dataset + evaluation metrics + caution report + pitch artifacts + downloadable ZIP</p>
-    </div>
-    <div class="bottom-card">
-      <div class="label">What Makes It Agentic</div>
-      <p>AI reasons and decides at each step · Strategy adapts to data · Evaluate can trigger retries · Powered by theFinlyApp reasoning engine</p>
+
+    <div class="bottom-strip">
+      <div class="bs-card">
+        <div class="bs-label">Input</div>
+        <p>CDC/NCHS NHAMCS 2022 public ED dataset — 13,085 visits, 21 operational columns</p>
+      </div>
+      <div class="bs-card">
+        <div class="bs-label">Southlake Scenarios</div>
+        <p>Distributed campus routing · Community diversion · Regional growth · ED surge</p>
+      </div>
+      <div class="bs-card">
+        <div class="bs-label">Output</div>
+        <p>Synthetic dataset + evaluation metrics + caution report + pitch artifacts + downloadable ZIP</p>
+      </div>
+      <div class="bs-card">
+        <div class="bs-label">What Makes It Agentic</div>
+        <p>AI reasons and decides at each step · Strategy adapts to data · Evaluate triggers retries · Powered by theFinlyApp</p>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ==================== SLIDE 2: FEATURES ==================== -->
+<!-- ==================== SLIDE 2: FEATURES + DEMO ==================== -->
 <div class="slide s2">
-  <div class="grid-overlay"></div>
-  <div class="slide-number">Features — 2/3</div>
+  <div class="accent-bar"></div>
+  <div class="top-row">
+    <div class="slide-badge badge-feat">What the Studio Does</div>
+    <div class="slide-num">Features — 2 / 3</div>
+  </div>
 
   <div class="left-col">
-    <div class="eyebrow">What the studio actually does</div>
     <h1>A Planning Studio,<br>Not Just a<br>Data Generator</h1>
-    <p class="subtitle">Saved demo reliability, visible AI reasoning, Southlake-specific scenarios, and exportable planning artifacts in one screen.</p>
+    <p class="sub">Saved demo reliability, visible AI reasoning, Southlake-specific scenarios, and exportable planning artifacts.</p>
 
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="icon" style="background:linear-gradient(135deg,rgba(27,186,177,0.15),rgba(15,124,130,0.08))">🎯</div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="fi" style="background: var(--sky)">🎯</div>
         <h3>Southlake Scenarios</h3>
-        <p>Four planning scenarios aligned to distributed-network strategy: campus routing, community diversion, growth, and surge.</p>
+        <p>Four planning scenarios aligned to distributed-network strategy: campus routing, diversion, growth, surge.</p>
       </div>
-      <div class="feature-card">
-        <div class="icon" style="background:linear-gradient(135deg,rgba(255,139,107,0.15),rgba(224,96,64,0.08))">🧠</div>
+      <div class="feat-card">
+        <div class="fi" style="background: var(--teal-light)">🧠</div>
         <h3>Visible AI Reasoning</h3>
-        <p>Reasoning trace at every agent step — judges can see what the AI decided and why. Powered by theFinlyApp.</p>
+        <p>Reasoning trace at every agent step — judges see what the AI decided and why.</p>
       </div>
-      <div class="feature-card">
-        <div class="icon" style="background:linear-gradient(135deg,rgba(27,186,177,0.15),rgba(15,124,130,0.08))">📊</div>
+      <div class="feat-card">
+        <div class="fi" style="background: var(--green-light)">📊</div>
         <h3>Evaluation Dashboard</h3>
-        <p>Fidelity, privacy, utility scores plus source-vs-synthetic preview in one visible screen.</p>
+        <p>Fidelity, privacy, utility scores plus source-vs-synthetic comparison in one screen.</p>
       </div>
-      <div class="feature-card">
-        <div class="icon" style="background:linear-gradient(135deg,rgba(242,231,207,0.5),rgba(242,231,207,0.2))">📦</div>
-        <h3>Export & Narrative</h3>
-        <p>Auto-generated methodology, features, cautions + downloadable ZIP for workshops and presentations.</p>
+      <div class="feat-card">
+        <div class="fi" style="background: var(--sky)">📦</div>
+        <h3>Export &amp; Narrative</h3>
+        <p>Auto-generated methodology, features, cautions + downloadable ZIP for workshops.</p>
       </div>
+    </div>
+
+    <div class="finly-note">
+      Reasoning and analysis technically supported by <strong>theFinlyApp</strong> — a financial intelligence platform whose agentic architecture was adapted for healthcare planning.
     </div>
   </div>
 
   <div class="demo-panel">
-    <div class="dp-label">Live demo output — Distributed Campus Routing</div>
+    <div class="dp-label">Live Demo Output — Distributed Campus Routing</div>
 
-    <div class="demo-metric-row">
-      <div class="demo-metric">
-        <div class="label">Fidelity</div>
-        <div class="value">87.8</div>
+    <div class="metric-row">
+      <div class="metric">
+        <div class="m-label">Fidelity</div>
+        <div class="m-val">87.8</div>
       </div>
-      <div class="demo-metric">
-        <div class="label">Privacy</div>
-        <div class="value">100.0</div>
+      <div class="metric">
+        <div class="m-label">Privacy</div>
+        <div class="m-val">100</div>
       </div>
-      <div class="demo-metric">
-        <div class="label">Utility</div>
-        <div class="value">92.7</div>
+      <div class="metric">
+        <div class="m-label">Utility</div>
+        <div class="m-val">92.7</div>
       </div>
-      <div class="demo-metric">
-        <div class="label">Exact Overlap</div>
-        <div class="value">0%</div>
+      <div class="metric">
+        <div class="m-label">Exact Overlap</div>
+        <div class="m-val">0%</div>
       </div>
     </div>
 
-    <div class="agent-timeline">
-      <div class="at-label">Agent reasoning timeline — powered by theFinlyApp</div>
-      <div class="agent-step-row">
-        <div class="agent-step-card">
-          <div class="name">Intent Agent</div>
-          <div class="trace">"Network operations needs to test routing across campus, observation, and community pathways..."</div>
-        </div>
-        <div class="agent-step-card">
-          <div class="name">Profile Agent</div>
-          <div class="trace">"13,085 rows, 21 columns. 42% pain_scale missingness reflects real clinical documentation..."</div>
-        </div>
+    <div class="demo-screenshot">
+      <img src="assets/run-focus.png" alt="Demo interface showing agent reasoning timeline, per-column fidelity chart, and distribution comparisons">
+      <div class="overlay">
+        <div class="info">Scenario: <strong>Distributed Campus Routing</strong> · 13,085 synthetic rows · Powered by theFinlyApp</div>
+        <div class="dl-btn">Download ZIP</div>
       </div>
-      <div class="agent-step-row">
-        <div class="agent-step-card">
-          <div class="name">Strategy Agent</div>
-          <div class="trace">"Selecting GaussianCopula over CTGAN — preserves multivariate flow relationships critical for routing..."</div>
-        </div>
-        <div class="agent-step-card">
-          <div class="name">Evaluate Agent</div>
-          <div class="trace">"Fidelity 87.8 strong for planning use. Categorical similarity preserved, zero-inflated columns excluded for accuracy..."</div>
-        </div>
-        <div class="agent-step-card">
-          <div class="name">Narrative Agent</div>
-          <div class="trace">"Framing as safe experimentation sandbox — emphasizing innovation velocity with governance boundaries..."</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="demo-run-badge">
-      <div class="run-info">Scenario: <strong>Distributed Campus Routing</strong> · 13,085 synthetic rows · Stakeholder: Network Operations</div>
-      <div class="download-btn">Download ZIP</div>
     </div>
   </div>
 </div>
 
 <!-- ==================== SLIDE 3: CAUTIONS ==================== -->
 <div class="slide s3">
-  <div class="grid-overlay"></div>
-  <div class="slide-number">Cautions — 3/3</div>
+  <div class="accent-bar"></div>
+  <div class="top-row">
+    <div class="slide-badge badge-caution">Planning Use Boundary</div>
+    <div class="slide-num">Cautions — 3 / 3</div>
+  </div>
 
   <div class="header">
-    <div class="left">
-      <div class="eyebrow">Planning use boundary</div>
-      <h1>What the Studio Is Safe For,<br>and What It Is Not</h1>
-      <p class="subtitle">Synthetic data is powerful for planning and experimentation. But it is not local operational truth, and it should not be used without governance and validation.</p>
-    </div>
+    <h1>What the Studio Is Safe For,<br>and What It Is Not</h1>
+    <p>Synthetic data is powerful for planning and experimentation. But it is not local operational truth, and it should not be used without governance and validation.</p>
   </div>
 
   <div class="columns">
     <div class="col-good">
-      <div class="col-header">
+      <div class="col-h">
         <div class="dot"></div>
-        <h2>Good For</h2>
+        <h2>Safe For</h2>
       </div>
       <div class="item">Planning workshops and innovation sprints — test routing, capacity, and community-diversion ideas safely</div>
       <div class="item">Scenario-driven discussions about Southlake's distributed-campus future state</div>
@@ -638,7 +697,7 @@
       <div class="item">Pitch-day storytelling backed by visible metrics, AI reasoning, and exportable artifacts</div>
     </div>
     <div class="col-not">
-      <div class="col-header">
+      <div class="col-h">
         <div class="dot"></div>
         <h2>Not Ready For</h2>
       </div>
@@ -649,13 +708,13 @@
     </div>
   </div>
 
-  <div class="bottom-message">
+  <div class="bottom-row">
     <div class="next-step">
-      <div class="label">Best Next Step</div>
+      <div class="ns-label">Best Next Step</div>
       <p>Validate this workflow with governed Southlake data, operational owners, and formal privacy review. The agentic architecture is ready — it needs real local data to become a real planning tool.</p>
     </div>
-    <div class="credibility-note">
-      <div class="label">Why This Slide Matters</div>
+    <div class="trust-note">
+      <div class="tn-label">Why This Slide Matters</div>
       <p>In healthcare, the team that says "here's what we don't know yet" is more trustworthy than the team that claims everything is solved. This caution boundary is a feature, not a weakness.</p>
     </div>
   </div>
