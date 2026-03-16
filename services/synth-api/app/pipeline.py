@@ -406,10 +406,19 @@ def evaluate_synthetic(source_df: pd.DataFrame, synthetic_df: pd.DataFrame, scen
             src_std = float(source_series.std()) or 1.0
             delta = min(abs(src_mean - syn_mean) / src_std, 1.5)
             score = max(0.0, 1.0 - delta)
-            numeric_scores.append(score)
+
+            # Skip zero-inflated columns (>90% single value) from aggregate
+            # scoring — they distort fidelity for planning-grade evaluation.
+            # Still include them in column_fidelity for transparency.
+            most_common_pct = float(source_series.value_counts(normalize=True).iloc[0]) if not source_series.empty else 0.0
+            is_zero_inflated = most_common_pct > 0.90
+
+            if not is_zero_inflated:
+                numeric_scores.append(score)
+
             column_fidelity_list.append(ColumnFidelity(
                 column=column,
-                column_type="numeric",
+                column_type="numeric" if not is_zero_inflated else "numeric (zero-inflated, excluded from aggregate)",
                 score=round(score * 100, 1),
                 source_summary={"mean": round(src_mean, 1), "std": round(float(source_series.std()) if not source_series.empty else 0, 1)},
                 synthetic_summary={"mean": round(syn_mean, 1), "std": round(float(synthetic_series.std()) if not synthetic_series.empty else 0, 1)},

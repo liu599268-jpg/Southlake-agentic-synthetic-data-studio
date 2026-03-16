@@ -23,10 +23,12 @@ Prepared answers for likely judge questions. Assigned to the most appropriate sp
 
 "The LLM powers five agent steps. The most important one is the Strategy Agent — it doesn't use a fixed formula to decide how to synthesize data. It looks at the data profile, the scenario, and the planning goal, then reasons about the best approach. You can see that reasoning in the agent timeline on screen. The Evaluate Agent also uses AI to interpret results and decide if a retry is needed."
 
-### Q4. Which LLM do you use?
+### Q4. Which LLM do you use? What is theFinlyApp?
 **Who answers:** Zhou1
 
-"We use a reasoning-grade LLM that is strong at structured reasoning and following multi-step instructions carefully. For a healthcare planning context where we need the AI to reason transparently about data quality and limitations, this kind of model is a good fit. The architecture is model-agnostic — it could use any capable reasoning model."
+"The reasoning and analysis behind the demo is technically supported by theFinlyApp — a financial intelligence platform that uses agentic AI architecture for deep data reasoning, evaluation, and narrative generation. We adapted that same agentic pattern for healthcare planning. The underlying LLM is a reasoning-grade model that is strong at structured reasoning and following multi-step instructions carefully. The architecture is model-agnostic — it could use any capable reasoning model, but theFinlyApp's agentic framework is what gives it the structured five-agent workflow you see in the demo."
+
+**If they ask more about Finly:** "theFinlyApp is a financial intelligence OS that uses the same agentic reasoning patterns — analyze data, decide strategy, evaluate quality, and generate narratives. We took that proven architecture and applied it to healthcare synthetic data generation. The reasoning depth you see in the agent timeline is the same kind of intelligence theFinlyApp brings to financial analysis."
 
 ### Q5. Why use a U.S. public dataset instead of Ontario data?
 **Who answers:** Huang
@@ -117,7 +119,7 @@ Prepared answers for likely judge questions. Assigned to the most appropriate sp
 ### Q19. Did you use AI to build this?
 **Who answers:** Zhou1
 
-"Yes — we used AI coding tools to help build the prototype rapidly. That's in the spirit of the hackathon brief, which specifically mentions 'vibe coding' and 'human-AI co-creation.' The important thing is that we understand every component and made deliberate design decisions about the architecture, the scenarios, and the caution framework."
+"Yes — we used AI coding tools to help build the prototype rapidly, and the reasoning and analysis engine is technically supported by theFinlyApp. That's in the spirit of the hackathon brief, which specifically mentions 'vibe coding' and 'human-AI co-creation.' The important thing is that we understand every component and made deliberate design decisions about the architecture, the scenarios, and the caution framework. TheFinlyApp's agentic architecture gave us a proven foundation for the multi-step reasoning workflow."
 
 ### Q20. How long did this take?
 **Who answers:** Zhou1
@@ -127,7 +129,7 @@ Prepared answers for likely judge questions. Assigned to the most appropriate sp
 ### Q21. What makes your solution different from other teams?
 **Who answers:** Zhou1
 
-"Three things. First, the agentic reasoning is visible — judges can see what the AI decided and why at every step. Second, the product is specifically designed around Southlake's distributed-health-network strategy, not a generic healthcare demo. Third, the caution and governance layer is a first-class feature, not an afterthought."
+"Four things. First, the agentic reasoning is visible — judges can see what the AI decided and why at every step. Second, the product is specifically designed around Southlake's distributed-health-network strategy, not a generic healthcare demo. Third, the caution and governance layer is a first-class feature, not an afterthought. Fourth, the reasoning engine is technically supported by theFinlyApp — a real-world agentic intelligence platform — which means the architecture isn't just a hackathon concept. It's adapted from a working product."
 
 ---
 

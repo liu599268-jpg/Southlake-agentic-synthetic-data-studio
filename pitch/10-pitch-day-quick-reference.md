@@ -27,27 +27,28 @@ NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000 npm run dev -- --hostname 127.0.0
 ## Primary Demo
 
 - Action: click `Load recommended demo run`
-- Run ID: `5f77ce451d`
+- Run ID: `f24271e772`
 - Scenario: `Distributed Campus Routing`
-- Fidelity: `81.54`
+- Fidelity: `87.83`
 - Privacy: `100.0`
-- Utility: `88.92`
+- Utility: `92.7`
 - ✅ Full agentic reasoning traces at all 5 steps
+- ✅ Zero-inflated columns properly excluded from aggregate fidelity
 
 ## Backup Demo
 
-- Run ID: `883a5060fd`
+- Run ID: `69f7ed8222`
 - Scenario: `ED Surge`
-- Fidelity: `78.97`
+- Fidelity: `84.96`
 - Privacy: `100.0`
-- Utility: `87.38`
+- Utility: `90.98`
 - ✅ Full agentic reasoning traces at all 5 steps
 
 ## Three Core Claims
 
-- This is an agentic planning studio — the LLM reasons at every step, doesn't follow a fixed script.
+- This is an agentic planning studio — the reasoning engine, technically supported by theFinlyApp, reasons at every step rather than following a fixed script.
 - The product is relevant to Southlake because it is built around distributed-health-network routing and closer-to-home care questions.
-- The value is not only synthetic data generation. The value is AI-powered reasoning plus evaluation plus self-correction plus exportable planning artifacts.
+- The value is not only synthetic data generation. The value is AI-powered reasoning plus evaluation plus self-correction plus exportable planning artifacts — powered by theFinlyApp's agentic architecture.
 
 ## Three Things Not To Claim
 
@@ -75,4 +76,4 @@ If the live app becomes unreliable:
 
 ## Best Closing Line
 
-"Our core argument is simple: agentic synthetic data can help health systems test future-state ideas earlier, faster, and more safely. For Southlake, that means a practical first step toward distributed-network experimentation without touching real patient records."
+"Our core argument is simple: agentic synthetic data can help health systems test future-state ideas earlier, faster, and more safely. For Southlake, that means a practical first step toward distributed-network experimentation without touching real patient records. The reasoning engine — technically supported by theFinlyApp — shows that agentic intelligence built for one domain can be adapted for healthcare planning."

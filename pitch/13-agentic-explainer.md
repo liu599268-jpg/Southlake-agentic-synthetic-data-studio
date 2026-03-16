@@ -31,7 +31,7 @@ Think of the difference between a vending machine and a chef:
 - A **vending machine** (regular pipeline): you press B4, you get chips. Same input, same output, every time. No thinking.
 - A **chef** (agentic system): you say "I want something healthy for lunch." The chef looks at what ingredients are available, considers your preferences, makes a plan, cooks it, tastes it, adjusts the seasoning, and explains what they made and why.
 
-Our system is the chef. It looks at the data, reasons about what synthesis approach fits best, generates the output, checks if it's good, and explains its work.
+Our system is the chef. The reasoning and analysis engine is technically supported by **theFinlyApp** — a financial intelligence platform whose agentic architecture we adapted for healthcare planning. It looks at the data, reasons about what synthesis approach fits best, generates the output, checks if it's good, and explains its work.
 
 ---
 
@@ -109,7 +109,7 @@ Map this directly:
 
 ### What to say in the opening:
 
-> "We took the brief's emphasis on 'how the system thinks and acts' seriously. Our studio doesn't just generate synthetic rows — it reasons about what to generate, evaluates its own work, and produces visible explanations at every step. The data is important, but the thinking is what makes this agentic."
+> "We took the brief's emphasis on 'how the system thinks and acts' seriously. Our studio doesn't just generate synthetic rows — it reasons about what to generate, evaluates its own work, and produces visible explanations at every step. The reasoning and analysis engine is technically supported by theFinlyApp, demonstrating that agentic intelligence built for one domain can be adapted for healthcare planning. The data is important, but the thinking is what makes this agentic."
 
 ---
 

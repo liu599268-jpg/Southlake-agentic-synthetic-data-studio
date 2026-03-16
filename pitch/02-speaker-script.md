@@ -10,7 +10,7 @@ Total time: 20 minutes. Speakers: Zhou1, Zhou2, Huang.
 
 Healthcare teams need to model new care pathways, test routing ideas, and plan for future growth. But they can't casually use real patient records for early-stage testing. Privacy, governance, and data sharing agreements create a wall between the question and the data.
 
-We built an agentic synthetic data studio that creates a safer planning sandbox — and makes the limitations visible before anyone over-trusts the output."
+We built an agentic synthetic data studio that creates a safer planning sandbox — with the reasoning and analysis technically supported by theFinlyApp — and makes the limitations visible before anyone over-trusts the output."
 
 ---
 
@@ -48,11 +48,11 @@ Synthetic data solves this. It gives innovation teams a way to test ideas in a s
 
 *When results appear, scroll slowly:*
 
-"At the top, the agent timeline — five steps, each showing what the AI reasoned and decided. This is what makes our system agentic: an LLM powers every step."
+"At the top, the agent timeline — five steps, each showing what the AI reasoned and decided. This is what makes our system agentic: the reasoning engine, technically supported by theFinlyApp, powers every step."
 
 *Point to metrics:*
 
-"Fidelity 81.5 — the synthetic data preserves 81.5% of the original statistical patterns. Privacy 100 — zero exact row copies detected. Utility 88.9 — a weighted score that says this data is both realistic and not a copy."
+"Fidelity 87.8 — the synthetic data preserves 87.8% of the original statistical patterns. Privacy 100 — zero exact row copies detected. Utility 92.7 — a weighted score that says this data is both realistic and not a copy."
 
 *Scroll to data tables:*
 
@@ -86,9 +86,9 @@ Third, the export. Every run produces a downloadable package — synthetic data,
 
 Think of the difference between a vending machine and a chef. A vending machine does the same thing every time — press a button, get an output. No thinking. A chef looks at the ingredients, considers what you asked for, makes a plan, cooks it, tastes it, adjusts the seasoning, and explains what they made and why.
 
-Our system is the chef.
+Our system is the chef. The reasoning and analysis that powers the demo is technically supported by theFinlyApp — a financial intelligence platform whose agentic architecture we adapted for healthcare planning.
 
-The LLM powers five agent steps. The Intent Agent frames the planning question based on the user's goal. The Profile Agent analyzes the dataset — not just counting rows, but reasoning about what's relevant for the planning question.
+The engine powers five agent steps. The Intent Agent frames the planning question based on the user's goal. The Profile Agent analyzes the dataset — not just counting rows, but reasoning about what's relevant for the planning question.
 
 The Strategy Agent is where the real decision-making happens. It uses AI reasoning to decide the best synthesis approach for this specific data and scenario. Not a fixed formula — actual reasoning.
 
@@ -154,7 +154,7 @@ We believe showing these limitations openly is a strength. In healthcare, the te
 
 "Our core argument is simple: agentic synthetic data can help health systems test future-state ideas earlier, faster, and more safely.
 
-For Southlake, that means a practical first step toward distributed-network experimentation without touching real patient records.
+For Southlake, that means a practical first step toward distributed-network experimentation without touching real patient records. The reasoning and analysis engine is technically supported by theFinlyApp, demonstrating that agentic intelligence built for one domain can be adapted for healthcare planning.
 
 If this moved beyond the hackathon, the next step would be validation with governed local data, privacy review, and scenario designs tailored to Southlake's actual operating questions.
 

@@ -1,13 +1,13 @@
 [
   {
-    "run_id": "5f77ce451d",
+    "run_id": "f24271e772",
     "label": "Primary live demo",
     "story_angle": "Distributed health network",
-    "summary": "Best on-stage story. Full LLM reasoning traces, per-column fidelity breakdown, and source-vs-synthetic distribution charts at every step.",
+    "summary": "Best on-stage story for Southlake. Full LLM reasoning traces, per-column fidelity breakdown, and source-vs-synthetic distribution charts.",
     "screenshot_path": null
   },
   {
-    "run_id": "883a5060fd",
+    "run_id": "69f7ed8222",
     "label": "Backup capacity walk-through",
     "story_angle": "ED resilience",
     "summary": "Fallback story with full LLM reasoning and analytical charts. Highlights surge pressure and throughput stress.",

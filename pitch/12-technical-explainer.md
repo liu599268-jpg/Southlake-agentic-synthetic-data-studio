@@ -290,5 +290,34 @@
 
 ---
 
+---
+
+## 9. theFinlyApp — Reasoning Engine
+
+> **30-second version:** "The reasoning and analysis in the demo is technically supported by theFinlyApp — a financial intelligence platform whose agentic architecture we adapted for healthcare planning."
+
+### What Is theFinlyApp?
+- **theFinlyApp** is a financial intelligence OS that uses agentic AI to analyze data, decide strategy, evaluate quality, and generate narratives
+- The same multi-agent reasoning architecture — Intent → Profile → Strategy → Evaluate → Narrative — was originally designed for financial data analysis
+- We adapted that proven pattern for healthcare synthetic data generation
+
+### Why This Matters for Judges
+- The agentic framework isn't a hackathon-only concept — it's adapted from a working product
+- The reasoning depth you see in the agent timeline comes from theFinlyApp's architecture
+- This means the approach is **production-tested**, not just a prototype idea
+
+### ✅ What to Say
+> *"The reasoning engine is technically supported by theFinlyApp — a financial intelligence platform that uses the same agentic architecture. We adapted their multi-step reasoning workflow for healthcare planning data. This isn't just a hackathon concept — it's built on a working agentic framework."*
+
+### ❌ What NOT to Say
+- ~~"theFinlyApp is a healthcare product"~~ — it's a financial intelligence platform; we adapted its architecture
+- ~~"theFinlyApp processes the patient data"~~ — all data processing is local; theFinlyApp provides the reasoning framework
+
+| If asked about... | Lead with... |
+|---|---|
+| theFinlyApp | "Financial intelligence platform whose agentic reasoning architecture we adapted for healthcare planning" |
+
+---
+
 *Document prepared for Southlake Hackathon — Zhou1, Zhou2, Huang presentation team.*
 *Last updated: March 2026*

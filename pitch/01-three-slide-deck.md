@@ -10,7 +10,7 @@ From Public ED Data To Southlake Future-State Planning Scenarios
 
 ### Core Message
 
-We built an agentic workflow that turns safe public ED data into synthetic planning artifacts for Southlake's distributed-health-network questions, then makes the limitations visible before anyone over-trusts the output.
+We built an agentic workflow — with reasoning and analysis technically supported by theFinlyApp — that turns safe public ED data into synthetic planning artifacts for Southlake's distributed-health-network questions, then makes the limitations visible before anyone over-trusts the output.
 
 ### On-Slide Content
 
@@ -28,6 +28,7 @@ Use `assets/architecture-workflow.svg` as the main visual.
 - Start by saying the problem is not just generating fake rows.
 - The real challenge is generating useful synthetic planning data for Southlake's future-state questions and making the limitations visible.
 - Emphasize that the system behaves like an agent because it reasons across multiple steps.
+- Mention that the reasoning and analysis engine is technically supported by theFinlyApp — a financial intelligence platform whose agentic architecture was adapted for healthcare.
 - Mention that the future-state story is about routing care across campus, observation, transfer, and community-connected settings.
 
 ## Slide 2: Features

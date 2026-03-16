@@ -20,7 +20,7 @@
 
 ### Opening (0:00 – 1:20)
 
-> "Southlake's challenge is not just a data problem — it's a safe experimentation problem. Healthcare teams need to model new care pathways, test routing ideas, and plan for growth. But they can't casually use real patient records for early-stage testing. We built an agentic synthetic data studio that creates a safer planning sandbox — and makes the limitations visible before anyone over-trusts the output."
+> "Southlake's challenge is not just a data problem — it's a safe experimentation problem. Healthcare teams need to model new care pathways, test routing ideas, and plan for growth. But they can't casually use real patient records for early-stage testing. We built an agentic synthetic data studio — with the reasoning and analysis technically supported by theFinlyApp — that creates a safer planning sandbox and makes the limitations visible before anyone over-trusts the output."
 
 ### Why Southlake (1:20 – 3:20)
 
@@ -28,15 +28,15 @@
 
 ### Slide 1 — Methodology (8:10 – 10:30)
 
-> "Our methodology is what the brief calls 'agentic.' Think of the difference between a vending machine and a chef. A vending machine does the same thing every time — press a button, get an output. A chef looks at the ingredients, considers what you asked for, makes a plan, cooks it, tastes it, adjusts, and explains what they made. Our system is the chef."
+> "Our methodology is what the brief calls 'agentic.' Think of the difference between a vending machine and a chef. A vending machine does the same thing every time — press a button, get an output. A chef looks at the ingredients, considers what you asked for, makes a plan, cooks it, tastes it, adjusts, and explains what they made. Our system is the chef. The reasoning and analysis engine is technically supported by theFinlyApp — a financial intelligence platform whose agentic architecture we adapted for healthcare planning."
 
-> "An LLM powers five agent steps. The Intent Agent frames the planning question. The Profile Agent analyzes the dataset. The Strategy Agent — and this is key — uses AI reasoning to *decide* the best synthesis approach for this specific data and scenario. It doesn't use a fixed formula. Then the Evaluate Agent checks its own work — if quality is below threshold, it adjusts and retries. Finally, the Narrative Agent writes planning-grade summaries."
+> "The engine powers five agent steps. The Intent Agent frames the planning question. The Profile Agent analyzes the dataset. The Strategy Agent — and this is key — uses AI reasoning to *decide* the best synthesis approach for this specific data and scenario. It doesn't use a fixed formula. Then the Evaluate Agent checks its own work — if quality is below threshold, it adjusts and retries. Finally, the Narrative Agent writes planning-grade summaries."
 
 > "The emphasis in the brief was 'how the system thinks and acts, not just the data it produces.' That's exactly what we built. The thinking is visible at every step."
 
 ### Closing (15:10 – 16:30)
 
-> "Our core argument is simple: agentic synthetic data can help health systems test future-state ideas earlier, faster, and more safely. For Southlake, that means a practical first step toward distributed-network experimentation without touching real patient records."
+> "Our core argument is simple: agentic synthetic data can help health systems test future-state ideas earlier, faster, and more safely. For Southlake, that means a practical first step toward distributed-network experimentation without touching real patient records. The reasoning engine — technically supported by theFinlyApp — demonstrates that agentic intelligence built for one domain can be adapted for healthcare planning."
 
 > "If this moved beyond the hackathon, the next step would be validation with governed local data, privacy review, and scenario designs tailored to Southlake's actual operating questions."
 
@@ -60,7 +60,7 @@ While loading:
 
 When results appear, scroll slowly through:
 
-> "At the top you can see the agent timeline — five steps, each showing what the AI reasoned and decided. Below that, the evaluation metrics: fidelity 81.5 — meaning the synthetic data preserves 81.5% of the original statistical patterns. Privacy 100 — zero exact row copies found. Utility 88.9 — a weighted combination."
+> "At the top you can see the agent timeline — five steps, each showing what the AI reasoned and decided. Below that, the evaluation metrics: fidelity 87.8 — meaning the synthetic data preserves 87.8% of the original statistical patterns. Privacy 100 — zero exact row copies found. Utility 92.7 — a weighted combination."
 
 Scroll to data tables:
 

@@ -243,15 +243,18 @@ function DemoRunCard({
 function FidelityChart({ data }: { data: ColumnFidelity[] }) {
   if (!data.length) return null;
 
-  // Separate into interesting columns (below 98%) and near-perfect ones
+  // Separate excluded (zero-inflated) columns, interesting, and near-perfect
   const interestingThreshold = 98;
-  const interesting = data.filter((item) => item.score < interestingThreshold);
-  const nearPerfect = data.filter((item) => item.score >= interestingThreshold);
+  const excluded = data.filter((item) => item.column_type.includes("excluded"));
+  const scored = data.filter((item) => !item.column_type.includes("excluded"));
+  const interesting = scored.filter((item) => item.score < interestingThreshold);
+  const nearPerfect = scored.filter((item) => item.score >= interestingThreshold);
 
   const chartData = interesting.map((item) => ({
     name: item.column.replaceAll("_", " "),
     score: item.score,
-    type: item.column_type,
+    type: item.column_type.startsWith("numeric") ? "numeric" : "categorical",
+    excluded: item.column_type.includes("excluded"),
   }));
 
   return (
@@ -324,7 +327,7 @@ function FidelityChart({ data }: { data: ColumnFidelity[] }) {
                 key={item.column}
                 className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-white px-3 py-1 text-xs text-slate-700"
               >
-                <span className="h-1.5 w-1.5 rounded-full" style={{ background: item.column_type === "numeric" ? "#6366f1" : "#f59e0b" }} />
+                <span className="h-1.5 w-1.5 rounded-full" style={{ background: item.column_type.startsWith("numeric") ? "#6366f1" : "#f59e0b" }} />
                 {item.column.replaceAll("_", " ")}
                 <span className="font-semibold text-emerald-700">{item.score}%</span>
               </span>
@@ -332,6 +335,29 @@ function FidelityChart({ data }: { data: ColumnFidelity[] }) {
           </div>
           <p className="mt-2 text-xs text-slate-500">
             Low-cardinality categorical columns and well-behaved numeric columns are preserved with near-zero distributional drift.
+          </p>
+        </div>
+      )}
+
+      {excluded.length > 0 && (
+        <div className="mt-4 rounded-[1.4rem] border border-slate-900/6 bg-amber-50/60 px-5 py-3">
+          <div className="text-xs font-semibold uppercase tracking-[0.14em] text-amber-700">
+            Zero-inflated columns excluded from aggregate ({excluded.length})
+          </div>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {excluded.map((item) => (
+              <span
+                key={item.column}
+                className="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-white px-3 py-1 text-xs text-slate-700"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                {item.column.replaceAll("_", " ")}
+                <span className="font-semibold text-amber-600">{item.score}%</span>
+              </span>
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-slate-500">
+            These columns have &gt;90% identical values in the source (e.g. observation_minutes is 0 for 97.9% of visits). Standard fidelity metrics are not meaningful for zero-inflated distributions, so they are excluded from the aggregate score.
           </p>
         </div>
       )}
@@ -602,7 +628,7 @@ export function Studio() {
                   scenario selection, and fast backup run loading.
                 </p>
                 <p>
-                  Backend: FastAPI agentic pipeline with LLM reasoning at
+                  Backend: FastAPI agentic pipeline with reasoning at
                   every step — profiling, strategy, synthesis, evaluation with
                   retry, and narrative generation.
                 </p>
@@ -960,7 +986,7 @@ export function Studio() {
                     </span>
                   </div>
                   <span className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-slate-400">
-                    Powered by LLM
+                    Powered by theFinlyApp
                   </span>
                 </div>
 
@@ -1014,7 +1040,7 @@ export function Studio() {
                           AI
                         </div>
                         <span className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-300">
-                          {step.name} — LLM Reasoning Trace
+                          {step.name} — Reasoning Trace
                         </span>
                       </div>
                       <p className="text-sm leading-7 text-slate-300">

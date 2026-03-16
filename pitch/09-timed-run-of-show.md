@@ -15,7 +15,7 @@ Total: 20 minutes. Target 16-17 minutes of content, 3-4 minutes buffer.
 ### 3:20 – 6:30 | Zhou2
 - **Goal:** Show the product quickly and reliably
 - **Action:** Open `http://127.0.0.1:3100`, click "Load recommended demo run", scroll to results
-- **Key callout:** Point to the agent reasoning timeline — "each step shows what the LLM reasoned and decided"
+- **Key callout:** Point to the agent reasoning timeline — "each step shows what the AI reasoned and decided, powered by theFinlyApp"
 
 ### 6:30 – 8:10 | Zhou2
 - **Goal:** Highlight what judges should remember

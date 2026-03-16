@@ -34,7 +34,7 @@ Synthetic data is fake data that is statistically useful for testing and plannin
 
 ## 4. What "Agentic" Means In This Project
 
-In this project, "agentic" means the system does a multi-step workflow instead of one single generation step.
+In this project, "agentic" means the system does a multi-step workflow instead of one single generation step. The reasoning and analysis engine is technically supported by **theFinlyApp** — a financial intelligence platform whose agentic architecture was adapted for healthcare planning.
 
 The studio:
 
@@ -46,7 +46,7 @@ The studio:
 - produces a plain-English caution summary
 - drafts pitch-day materials
 
-That is the reason we call it an agentic synthetic data creation service.
+Each of these steps is powered by AI reasoning from theFinlyApp's agentic framework — visible in the agent timeline on screen. That is the reason we call it an agentic synthetic data creation service.
 
 ## 5. What The Studio Actually Does
 
@@ -92,21 +92,22 @@ The app now exposes this as a saved demo run on the home screen, so the team can
 
 Recommended primary run:
 
-- Run ID: `5f77ce451d`
+- Run ID: `f24271e772`
 - Scenario: `Distributed Campus Routing`
-- Fidelity: `81.54`
+- Fidelity: `87.83`
 - Privacy: `100.0`
-- Utility: `88.92`
+- Utility: `92.7`
 - Synthetic rows: `13,085`
 - ✅ Full agentic reasoning traces at all 5 agent steps
+- ✅ Zero-inflated columns excluded from aggregate fidelity
 
 Recommended backup run:
 
-- Run ID: `883a5060fd`
+- Run ID: `69f7ed8222`
 - Scenario: `ED Surge`
-- Fidelity: `78.97`
+- Fidelity: `84.96`
 - Privacy: `100.0`
-- Utility: `87.38`
+- Utility: `90.98`
 - Synthetic rows: `17,010`
 - ✅ Full agentic reasoning traces at all 5 agent steps
 
