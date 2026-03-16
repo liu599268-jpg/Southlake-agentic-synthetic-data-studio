@@ -602,7 +602,7 @@ export function Studio() {
                   scenario selection, and fast backup run loading.
                 </p>
                 <p>
-                  Backend: FastAPI agentic pipeline with Claude reasoning at
+                  Backend: FastAPI agentic pipeline with LLM reasoning at
                   every step — profiling, strategy, synthesis, evaluation with
                   retry, and narrative generation.
                 </p>
@@ -960,7 +960,7 @@ export function Studio() {
                     </span>
                   </div>
                   <span className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-slate-400">
-                    Powered by Claude · Anthropic
+                    Powered by LLM
                   </span>
                 </div>
 
@@ -1014,7 +1014,7 @@ export function Studio() {
                           AI
                         </div>
                         <span className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-300">
-                          {step.name} — Claude&apos;s Reasoning Trace
+                          {step.name} — LLM Reasoning Trace
                         </span>
                       </div>
                       <p className="text-sm leading-7 text-slate-300">
