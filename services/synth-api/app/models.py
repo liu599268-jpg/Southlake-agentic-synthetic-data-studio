@@ -45,6 +45,21 @@ class SynthesisPlan(BaseModel):
     evaluation_focus: list[str]
 
 
+class ColumnFidelity(BaseModel):
+    column: str
+    column_type: str  # "numeric" or "categorical"
+    score: float
+    source_summary: Any = None  # mean for numeric, top-3 frequencies for categorical
+    synthetic_summary: Any = None
+
+
+class DistributionComparison(BaseModel):
+    column: str
+    categories: list[str]
+    source_pct: list[float]
+    synthetic_pct: list[float]
+
+
 class EvalReport(BaseModel):
     fidelity_score: float
     privacy_score: float
@@ -54,6 +69,8 @@ class EvalReport(BaseModel):
     categorical_similarity: float
     highlights: list[str]
     warnings: list[str]
+    column_fidelity: list[ColumnFidelity] = []
+    distribution_comparisons: list[DistributionComparison] = []
 
 
 class CautionReport(BaseModel):

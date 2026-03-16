@@ -48,6 +48,21 @@ export type SynthesisPlan = {
   evaluation_focus: string[];
 };
 
+export type ColumnFidelity = {
+  column: string;
+  column_type: string;
+  score: number;
+  source_summary: Record<string, number> | null;
+  synthetic_summary: Record<string, number> | null;
+};
+
+export type DistributionComparison = {
+  column: string;
+  categories: string[];
+  source_pct: number[];
+  synthetic_pct: number[];
+};
+
 export type EvalReport = {
   fidelity_score: number;
   privacy_score: number;
@@ -57,6 +72,8 @@ export type EvalReport = {
   categorical_similarity: number;
   highlights: string[];
   warnings: string[];
+  column_fidelity: ColumnFidelity[];
+  distribution_comparisons: DistributionComparison[];
 };
 
 export type CautionReport = {

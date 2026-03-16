@@ -1,10 +1,16 @@
 "use client";
 
 import { startTransition, useEffect, useState } from "react";
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
+  ResponsiveContainer, Legend, Cell,
+} from "recharts";
 
 import type {
+  ColumnFidelity,
   DatasetProfile,
   DemoRunSummary,
+  DistributionComparison,
   PresetLoadResponse,
   RunResponse,
 } from "@/lib/types";
@@ -229,6 +235,116 @@ function DemoRunCard({
             Screenshot ready
           </span>
         )}
+      </div>
+    </div>
+  );
+}
+
+function FidelityChart({ data }: { data: ColumnFidelity[] }) {
+  if (!data.length) return null;
+
+  const chartData = data.map((item) => ({
+    name: item.column.replaceAll("_", " "),
+    score: item.score,
+    type: item.column_type,
+  }));
+
+  return (
+    <div className="rounded-[2rem] border border-slate-900/8 bg-white/90 p-6">
+      <div className="mb-1 flex items-center justify-between">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+            Per-Column Fidelity Breakdown
+          </p>
+          <h3 className="section-title mt-1 text-xl font-semibold text-slate-950">
+            How well each column was preserved
+          </h3>
+        </div>
+        <div className="flex gap-3">
+          <div className="flex items-center gap-1.5">
+            <div className="h-3 w-3 rounded-sm bg-emerald-500" />
+            <span className="text-xs text-slate-500">Numeric</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="h-3 w-3 rounded-sm bg-teal-400" />
+            <span className="text-xs text-slate-500">Categorical</span>
+          </div>
+        </div>
+      </div>
+      <div className="mt-4" style={{ height: 320 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={chartData} layout="vertical" margin={{ left: 120, right: 20, top: 5, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(16,42,67,0.06)" horizontal={false} />
+            <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 11, fill: "#5a7184" }} />
+            <YAxis type="category" dataKey="name" tick={{ fontSize: 11, fill: "#5a7184" }} width={115} />
+            <Tooltip
+              contentStyle={{
+                background: "#0f2b3c",
+                border: "none",
+                borderRadius: 12,
+                color: "white",
+                fontSize: 13,
+              }}
+              formatter={(value) => [`${Number(value).toFixed(1)}%`, "Fidelity"]}
+            />
+            <Bar dataKey="score" radius={[0, 6, 6, 0]} maxBarSize={22}>
+              {chartData.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={entry.type === "numeric" ? "#10b981" : "#2dd4bf"}
+                  fillOpacity={entry.score > 80 ? 1 : entry.score > 60 ? 0.75 : 0.5}
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+}
+
+function DistributionChart({ comparison }: { comparison: DistributionComparison }) {
+  const chartData = comparison.categories.map((cat, i) => ({
+    name: cat,
+    Source: comparison.source_pct[i],
+    Synthetic: comparison.synthetic_pct[i],
+  }));
+
+  return (
+    <div className="rounded-[1.8rem] border border-slate-900/8 bg-white/90 p-5">
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+        Distribution Comparison
+      </p>
+      <h3 className="section-title mt-1 text-lg font-semibold text-slate-950">
+        {comparison.column.replaceAll("_", " ")}
+      </h3>
+      <div className="mt-3" style={{ height: 220 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={chartData} margin={{ left: 0, right: 0, top: 5, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(16,42,67,0.06)" />
+            <XAxis
+              dataKey="name"
+              tick={{ fontSize: 10, fill: "#5a7184" }}
+              angle={-25}
+              textAnchor="end"
+              height={60}
+            />
+            <YAxis tick={{ fontSize: 10, fill: "#5a7184" }} unit="%" />
+            <Tooltip
+              contentStyle={{
+                background: "#0f2b3c",
+                border: "none",
+                borderRadius: 12,
+                color: "white",
+                fontSize: 12,
+              }}
+              formatter={(value) => [`${Number(value).toFixed(1)}%`]}
+            />
+            <Legend wrapperStyle={{ fontSize: 11 }} />
+            <Bar dataKey="Source" fill="#0f7c82" radius={[4, 4, 0, 0]} maxBarSize={32} />
+            <Bar dataKey="Synthetic" fill="#1bbab1" radius={[4, 4, 0, 0]} maxBarSize={32} fillOpacity={0.7} />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
@@ -873,6 +989,29 @@ export function Studio() {
                 })()}
               </div>
             </div>
+
+            {(run.evaluation.column_fidelity?.length > 0 || run.evaluation.distribution_comparisons?.length > 0) && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-teal-500" />
+                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                    Analytical evaluation — source vs synthetic comparison
+                  </span>
+                </div>
+
+                {run.evaluation.column_fidelity?.length > 0 && (
+                  <FidelityChart data={run.evaluation.column_fidelity} />
+                )}
+
+                {run.evaluation.distribution_comparisons?.length > 0 && (
+                  <div className="grid gap-4 xl:grid-cols-3">
+                    {run.evaluation.distribution_comparisons.map((comp) => (
+                      <DistributionChart key={comp.column} comparison={comp} />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
             <div className="grid gap-6 xl:grid-cols-2">
               <TablePreview title="Source sample" rows={run.source_preview} />

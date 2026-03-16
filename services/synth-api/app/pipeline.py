@@ -21,7 +21,9 @@ from .llm_client import ReasoningClient
 from .models import (
     AgentStep,
     CautionReport,
+    ColumnFidelity,
     DatasetProfile,
+    DistributionComparison,
     EvalReport,
     PitchSummary,
     PresetInfo,
@@ -378,9 +380,17 @@ def apply_scenario_transformations(dataframe: pd.DataFrame, scenario: ScenarioPr
 def evaluate_synthetic(source_df: pd.DataFrame, synthetic_df: pd.DataFrame, scenario: ScenarioPreset) -> EvalReport:
     numeric_scores = []
     categorical_scores = []
+    column_fidelity_list: list[ColumnFidelity] = []
+    distribution_comparisons: list[DistributionComparison] = []
 
     source = source_df.reset_index(drop=True)
     synthetic = synthetic_df.reset_index(drop=True)
+
+    # Key columns to generate distribution comparisons for
+    distribution_columns = {
+        "triage_level", "visit_outcome", "arrived_by_ambulance",
+        "primary_payer", "sex", "visit_day_of_week",
+    }
 
     for column in source.columns:
         if column not in synthetic.columns:
@@ -395,18 +405,55 @@ def evaluate_synthetic(source_df: pd.DataFrame, synthetic_df: pd.DataFrame, scen
             syn_mean = float(synthetic_series.mean())
             src_std = float(source_series.std()) or 1.0
             delta = min(abs(src_mean - syn_mean) / src_std, 1.5)
-            numeric_scores.append(max(0.0, 1.0 - delta))
+            score = max(0.0, 1.0 - delta)
+            numeric_scores.append(score)
+            column_fidelity_list.append(ColumnFidelity(
+                column=column,
+                column_type="numeric",
+                score=round(score * 100, 1),
+                source_summary={"mean": round(src_mean, 1), "std": round(float(source_series.std()) if not source_series.empty else 0, 1)},
+                synthetic_summary={"mean": round(syn_mean, 1), "std": round(float(synthetic_series.std()) if not synthetic_series.empty else 0, 1)},
+            ))
         else:
             src_freq = source_series.astype(str).value_counts(normalize=True)
             syn_freq = synthetic_series.astype(str).value_counts(normalize=True)
             categories = set(src_freq.index).union(set(syn_freq.index))
             tvd = sum(abs(src_freq.get(cat, 0.0) - syn_freq.get(cat, 0.0)) for cat in categories) / 2
-            categorical_scores.append(max(0.0, 1.0 - min(tvd, 1.0)))
+            score = max(0.0, 1.0 - min(tvd, 1.0))
+            categorical_scores.append(score)
+
+            # Top categories for summary
+            top_cats = src_freq.head(3).to_dict()
+            syn_top = syn_freq.reindex(list(top_cats.keys()), fill_value=0.0).to_dict()
+            column_fidelity_list.append(ColumnFidelity(
+                column=column,
+                column_type="categorical",
+                score=round(score * 100, 1),
+                source_summary={k: round(v * 100, 1) for k, v in top_cats.items()},
+                synthetic_summary={k: round(v * 100, 1) for k, v in syn_top.items()},
+            ))
+
+            # Full distribution comparison for key columns
+            if column in distribution_columns:
+                all_cats = sorted(categories)
+                # Limit to top 8 categories for chart readability
+                top_by_source = src_freq.head(8).index.tolist()
+                chart_cats = [c for c in top_by_source if c and str(c) != "nan"]
+                src_pcts = [round(float(src_freq.get(c, 0.0)) * 100, 1) for c in chart_cats]
+                syn_pcts = [round(float(syn_freq.get(c, 0.0)) * 100, 1) for c in chart_cats]
+                # Shorten long category names
+                short_cats = [c[:25] + "…" if len(str(c)) > 25 else str(c) for c in chart_cats]
+                distribution_comparisons.append(DistributionComparison(
+                    column=column,
+                    categories=short_cats,
+                    source_pct=src_pcts,
+                    synthetic_pct=syn_pcts,
+                ))
 
     source_rows = set(map(tuple, source.fillna("__NA__").astype(str).to_numpy()))
-    synthetic_rows = list(map(tuple, synthetic.fillna("__NA__").astype(str).to_numpy()))
-    exact_matches = sum(1 for row in synthetic_rows if row in source_rows)
-    exact_match_rate = exact_matches / max(len(synthetic_rows), 1)
+    synthetic_rows_tuples = list(map(tuple, synthetic.fillna("__NA__").astype(str).to_numpy()))
+    exact_matches = sum(1 for row in synthetic_rows_tuples if row in source_rows)
+    exact_match_rate = exact_matches / max(len(synthetic_rows_tuples), 1)
 
     numeric_similarity = float(np.mean(numeric_scores) * 100) if numeric_scores else 0.0
     categorical_similarity = float(np.mean(categorical_scores) * 100) if categorical_scores else 0.0
@@ -429,6 +476,9 @@ def evaluate_synthetic(source_df: pd.DataFrame, synthetic_df: pd.DataFrame, scen
     if not warnings:
         warnings.append("No immediate leakage warning triggered, but synthetic output still requires governance review.")
 
+    # Sort column fidelity by score ascending (weakest first)
+    column_fidelity_list.sort(key=lambda cf: cf.score)
+
     return EvalReport(
         fidelity_score=round(fidelity_score, 2),
         privacy_score=round(privacy_score, 2),
@@ -438,6 +488,8 @@ def evaluate_synthetic(source_df: pd.DataFrame, synthetic_df: pd.DataFrame, scen
         categorical_similarity=round(categorical_similarity, 2),
         highlights=highlights,
         warnings=warnings,
+        column_fidelity=column_fidelity_list,
+        distribution_comparisons=distribution_comparisons,
     )
 
 
