@@ -262,16 +262,19 @@ function FidelityChart({ data }: { data: ColumnFidelity[] }) {
         </div>
         <div className="flex gap-3">
           <div className="flex items-center gap-1.5">
-            <div className="h-3 w-3 rounded-sm bg-emerald-500" />
+            <div className="h-3 w-3 rounded-sm" style={{ background: "#6366f1" }} />
             <span className="text-xs text-slate-500">Numeric</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="h-3 w-3 rounded-sm bg-teal-400" />
+            <div className="h-3 w-3 rounded-sm" style={{ background: "#f59e0b" }} />
             <span className="text-xs text-slate-500">Categorical</span>
           </div>
         </div>
       </div>
-      <div className="mt-4" style={{ height: 320 }}>
+      <p className="mt-2 text-xs leading-5 text-slate-500">
+        Numeric scores compare statistical means (normalized by standard deviation). Categorical scores measure distribution overlap (Total Variation Distance). Higher = more faithful to source patterns.
+      </p>
+      <div className="mt-3" style={{ height: 320 }}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData} layout="vertical" margin={{ left: 120, right: 20, top: 5, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(16,42,67,0.06)" horizontal={false} />
@@ -291,8 +294,8 @@ function FidelityChart({ data }: { data: ColumnFidelity[] }) {
               {chartData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
-                  fill={entry.type === "numeric" ? "#10b981" : "#2dd4bf"}
-                  fillOpacity={entry.score > 80 ? 1 : entry.score > 60 ? 0.75 : 0.5}
+                  fill={entry.type === "numeric" ? "#6366f1" : "#f59e0b"}
+                  fillOpacity={entry.score > 80 ? 1 : entry.score > 60 ? 0.8 : 0.55}
                 />
               ))}
             </Bar>
@@ -341,8 +344,8 @@ function DistributionChart({ comparison }: { comparison: DistributionComparison 
               formatter={(value) => [`${Number(value).toFixed(1)}%`]}
             />
             <Legend wrapperStyle={{ fontSize: 11 }} />
-            <Bar dataKey="Source" fill="#0f7c82" radius={[4, 4, 0, 0]} maxBarSize={32} />
-            <Bar dataKey="Synthetic" fill="#1bbab1" radius={[4, 4, 0, 0]} maxBarSize={32} fillOpacity={0.7} />
+            <Bar dataKey="Source" fill="#334155" radius={[4, 4, 0, 0]} maxBarSize={32} />
+            <Bar dataKey="Synthetic" fill="#1bbab1" radius={[4, 4, 0, 0]} maxBarSize={32} />
           </BarChart>
         </ResponsiveContainer>
       </div>

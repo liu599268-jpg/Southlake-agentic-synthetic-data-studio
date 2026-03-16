@@ -1,16 +1,16 @@
-# Southlake Pitch Draft 883a5060fd
+# Southlake Pitch Draft adf510bc99
 
 ## Methodology
-- Southlake's emergency department underwent stress-testing to evaluate performance during surge conditions including increased patient arrivals, higher ambulance volumes, and extended throughput times.
-- The simulation utilized advanced GaussianCopulaSynthesizer modeling to generate realistic surge scenarios while maintaining complete patient privacy protection with a 100% privacy score.
-- Testing achieved 78.97% fidelity in replicating actual emergency department conditions, providing reliable insights for capacity planning and resource allocation during high-demand periods.
+- The synthetic dataset achieves 81.54% fidelity while maintaining 100% privacy protection, enabling innovation teams to test distributed campus routing scenarios without compromising real patient information.
+- The Gaussian Copula model generates planning-grade data that supports testing of observation demand patterns and community handoff workflows across multiple campus locations.
+- This approach allows Southlake teams to validate routing assumptions and optimize resource allocation strategies using realistic synthetic data that mirrors actual operational patterns.
 
 ## Features
-- Healthcare facilities can simulate increased patient demand scenarios to test capacity planning and resource allocation strategies during peak periods or emergency situations.
-- The system models patient acuity distribution changes, allowing teams to evaluate triage protocols and staffing adjustments when case complexity shifts toward higher-priority conditions.
-- Organizations can analyze the impact of extended patient flow times on operational efficiency, helping optimize scheduling, staffing models, and facility utilization before implementing changes.
+- Healthcare systems can optimize patient flow by expanding observation units and streamlined transfer protocols to reduce bottlenecks and improve care transitions.
+- The platform maintains overall patient capacity while intelligently redistributing cases across different care settings to maximize efficiency and resource utilization.
+- Smart routing algorithms incorporate safety-first decision support to guide appropriate patient placement while minimizing risk and ensuring quality outcomes.
 
 ## Cautions
-- This synthetic dataset is designed specifically for healthcare planning workshops and innovation prototyping sessions, not for actual patient care decisions or operational use.
-- The data represents general healthcare patterns and may not accurately reflect Southlake's specific patient populations or Ontario's unique care delivery models.
-- Any insights generated during this demo must be validated with real organizational data and proper governance review before implementation in live healthcare environments.
+- This synthetic dataset is designed specifically for healthcare planning workshops and innovation prototyping sessions, not for actual patient care decisions or operational implementation.
+- The data represents general healthcare patterns and may not accurately reflect Southlake's specific patient populations or local Ontario care delivery models since it's based on U.S. national sources.
+- Any insights generated during demos must be validated with real Southlake data, privacy compliance review, and operational stakeholder approval before moving to actual implementation.
