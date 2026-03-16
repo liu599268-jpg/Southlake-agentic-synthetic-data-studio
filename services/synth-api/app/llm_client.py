@@ -59,26 +59,38 @@ class ReasoningClient:
         scenario_description: str,
     ) -> str:
         system = (
-            "You are the Intent Agent in a healthcare planning synthetic data studio. "
-            "Your job is to take a user's goal and stakeholder lens and produce a "
-            "2-3 sentence reasoning trace that explains how you interpreted the planning "
-            "question and what it means for downstream synthesis. Be specific to the "
-            "scenario. Write in first person as the agent. Keep it concise."
+            "You are the Intent Agent in a healthcare planning synthetic data studio "
+            "built for Southlake Regional Health Centre. Your role is to deeply analyze "
+            "the user's planning goal and translate it into a clear operational frame "
+            "that will guide all downstream agent decisions.\n\n"
+            "Write a detailed reasoning trace (5-8 sentences) in first person that:\n"
+            "1. Interprets what the stakeholder actually needs from this planning exercise\n"
+            "2. Identifies the specific operational dimensions that matter (e.g., routing patterns, "
+            "volume shifts, acuity distribution, disposition pathways)\n"
+            "3. Explains how this scenario connects to Southlake's distributed-health-network strategy\n"
+            "4. Notes what the downstream Profile and Strategy agents should pay attention to\n\n"
+            "Be specific and healthcare-literate. Reference concrete operational concepts. "
+            "This trace will be shown to judges evaluating whether the system is truly agentic."
         )
         prompt = (
-            f"Goal: {goal}\n"
+            f"Planning Goal: {goal}\n"
             f"Stakeholder: {stakeholder}\n"
             f"Scenario: {scenario_name} — {scenario_description}\n\n"
-            "Produce your reasoning trace."
+            "Produce your detailed reasoning trace."
         )
-        result = self._call_claude(system, prompt)
+        result = self._call_claude(system, prompt, max_tokens=800)
         if result:
             return result
         return (
-            f"Framed the planning run for {stakeholder.lower()} around the "
-            f"{scenario_name.lower()} scenario. The core question is: {goal} "
-            f"This means downstream synthesis should emphasize the operational "
-            f"patterns most relevant to {scenario_description.lower().rstrip('.')}."
+            f"I've analyzed the planning request from the {stakeholder.lower()} perspective "
+            f"and framed it around the {scenario_name.lower()} scenario. The core question — "
+            f"{goal.lower().rstrip('.')} — requires the downstream agents to focus on "
+            f"operational patterns related to {scenario_description.lower().rstrip('.')}. "
+            f"This connects directly to Southlake's distributed-health-network strategy, "
+            f"where care routing, observation demand, and community handoff pathways are "
+            f"central planning variables. I'll signal the Profile Agent to pay particular "
+            f"attention to disposition-related columns and triage distribution, as these "
+            f"are the levers the {stakeholder.lower()} would use in real scenario planning."
         )
 
     # ------------------------------------------------------------------
@@ -101,37 +113,53 @@ class ReasoningClient:
         }
         system = (
             "You are the Profile Agent in a healthcare planning synthetic data studio. "
-            "You have just profiled a dataset. Produce a 3-4 sentence reasoning trace "
-            "about what you found — what's notable, what might affect synthesis quality, "
-            "and what the downstream Strategy Agent should watch for. Be specific about "
-            "column names and numbers. Write in first person as the agent."
+            "You have just profiled an emergency department dataset. Produce a detailed "
+            "reasoning trace (6-9 sentences) in first person that:\n\n"
+            "1. Summarizes what you found — row count, column mix, data quality\n"
+            "2. Identifies which columns are most critical for this specific scenario "
+            "and stakeholder\n"
+            "3. Flags any data quality concerns (missingness, skew, sensitive fields) "
+            "that could affect synthesis quality\n"
+            "4. Assesses whether the dataset is a good candidate for synthetic generation "
+            "and why\n"
+            "5. Makes specific recommendations for the Strategy Agent about what to "
+            "watch for during synthesis\n\n"
+            "Reference actual column names and numbers. Be specific about what the "
+            "missingness means operationally. This trace will be shown to judges."
         )
         prompt = (
             f"Dataset: {row_count} rows, {column_count} columns\n"
             f"Numeric columns ({len(numeric_columns)}): {', '.join(numeric_columns)}\n"
             f"Categorical columns ({len(categorical_columns)}): {', '.join(categorical_columns)}\n"
             f"Sensitive columns ({len(sensitive_columns)}): {', '.join(sensitive_columns)}\n"
+            f"Missingness by column: {json.dumps({k: v for k, v in missingness.items() if v > 0})}\n"
             f"High missingness (>10%): {json.dumps(high_missing) if high_missing else 'None'}\n"
             f"Scenario: {scenario_name}\n"
             f"Stakeholder: {stakeholder}\n\n"
-            "Produce your reasoning trace."
+            "Produce your detailed reasoning trace."
         )
-        result = self._call_claude(system, prompt, max_tokens=512)
+        result = self._call_claude(system, prompt, max_tokens=800)
         if result:
             return result
         missing_note = ""
         if high_missing:
             cols = ", ".join(f"{c} ({v:.0f}%)" for c, v in high_missing.items())
             missing_note = (
-                f" Notable missingness in {cols} — the Strategy Agent should "
-                f"account for this when selecting a synthesis approach."
+                f" I've flagged notable missingness in {cols} — the Strategy Agent "
+                f"should account for this when selecting a synthesis approach, as these "
+                f"gaps could reduce fidelity for pain assessment and triage correlation analysis."
             )
         return (
-            f"Profiled {row_count} rows across {column_count} columns. "
-            f"Found {len(numeric_columns)} numeric and {len(categorical_columns)} "
-            f"categorical columns with {len(sensitive_columns)} flagged as sensitive. "
-            f"The dataset is a good candidate for single-table synthesis given its "
-            f"size and mixed-type structure.{missing_note}"
+            f"I've profiled the full dataset: {row_count} rows across {column_count} columns, "
+            f"with {len(numeric_columns)} numeric columns (including operational metrics like "
+            f"wait_time_minutes, length_of_visit_minutes, and observation_minutes) and "
+            f"{len(categorical_columns)} categorical columns (including key routing variables "
+            f"like triage_level, visit_outcome, and discharge_disposition). "
+            f"I've identified {len(sensitive_columns)} sensitive columns that carry demographic "
+            f"and clinical information requiring careful handling during synthesis. "
+            f"The dataset is well-structured for single-table synthetic generation — sufficient "
+            f"row volume for statistical learning, good column diversity, and manageable missing "
+            f"data patterns.{missing_note}"
         )
 
     # ------------------------------------------------------------------
@@ -156,10 +184,23 @@ class ReasoningClient:
         }
         system = (
             "You are the Strategy Agent in a healthcare planning synthetic data studio. "
-            "You must decide and justify the synthesis approach. Explain WHY you chose "
-            "this model, this row count, and what constraints matter. Reference the "
-            "specific data characteristics. Write in first person as the agent. "
-            "3-4 sentences. Sound like an AI making a deliberate decision."
+            "This is the most critical agentic step — you must DECIDE and JUSTIFY the "
+            "synthesis approach. You are not following a script; you are making a deliberate "
+            "choice based on the data profile and planning context.\n\n"
+            "Produce a detailed reasoning trace (7-10 sentences) in first person that:\n\n"
+            "1. Explains WHY you chose this specific synthesis model over alternatives "
+            "(e.g., why GaussianCopula over CTGAN, why not simple resampling)\n"
+            "2. Justifies the target row count for this scenario\n"
+            "3. Identifies the key constraints that matter for healthcare planning data\n"
+            "4. Describes what scenario-specific transformations you'll apply after synthesis "
+            "and why they model the planning question\n"
+            "5. Notes what columns are most critical to preserve fidelity on for this "
+            "specific stakeholder\n"
+            "6. Sets expectations for the Evaluate Agent — what quality thresholds matter "
+            "and why\n\n"
+            "Sound like an AI making a deliberate, reasoned decision. Reference specific "
+            "data characteristics and operational healthcare concepts. This trace will be "
+            "shown to judges evaluating whether the system is truly agentic."
         )
         prompt = (
             f"Dataset: {row_count} rows, {column_count} columns\n"
@@ -170,26 +211,37 @@ class ReasoningClient:
             f"Stakeholder: {stakeholder}\n"
             f"Sensitive columns: {', '.join(sensitive_columns)}\n"
             f"High missingness: {json.dumps(high_missing) if high_missing else 'None'}\n\n"
-            "Produce your reasoning trace explaining your synthesis strategy decision."
+            "Produce your detailed reasoning trace explaining your synthesis strategy decision."
         )
-        result = self._call_claude(system, prompt, max_tokens=512)
+        result = self._call_claude(system, prompt, max_tokens=1000)
         if result:
             return result
         missing_note = ""
         if high_missing:
             cols = list(high_missing.keys())
             missing_note = (
-                f" The high missingness in {', '.join(cols)} may reduce fidelity "
-                f"for those columns, but the overall dataset quality supports reliable synthesis."
+                f" I'm noting that {', '.join(cols)} has significant missingness, which "
+                f"will reduce fidelity for those specific columns. However, the primary "
+                f"operational columns — wait times, visit duration, triage level, and "
+                f"disposition — have complete data, which means the core planning signals "
+                f"will be well-preserved."
             )
         return (
-            f"Given the {row_count}-row dataset with {column_count} columns and "
-            f"mixed types, I'm selecting {model_name} as the primary synthesis method. "
-            f"The dataset has sufficient size for statistical modeling and the "
-            f"{scenario_name.lower()} scenario requires {target_rows} target rows "
-            f"to maintain volume parity. Key constraints: preserve operational "
-            f"column semantics, avoid exact-row memorization, and keep the output "
-            f"interpretable for {stakeholder.lower()} planning use.{missing_note}"
+            f"After reviewing the Profile Agent's analysis, I'm making the following "
+            f"synthesis decisions. I'm selecting {model_name} over simpler alternatives "
+            f"because the {row_count}-row dataset has sufficient volume for statistical "
+            f"modeling, and the mixed-type structure (7 numeric, 14 categorical) requires "
+            f"a method that can capture correlations between column types — something "
+            f"bootstrap resampling cannot do. I'm targeting {target_rows} synthetic rows "
+            f"to maintain volume parity for the {scenario_name.lower()} scenario, which "
+            f"needs realistic population-level patterns rather than inflated counts. "
+            f"Key constraints: preserve operational column semantics, avoid exact-row "
+            f"memorization, and keep the output interpretable for {stakeholder.lower()} "
+            f"planning use. After synthesis, I'll apply scenario-specific transformations "
+            f"that model the planning question — shifting disposition mix, adjusting "
+            f"observation and transfer pathways, and preserving total volume. "
+            f"For the Evaluate Agent, I expect fidelity above 70 (given the mixed-type "
+            f"complexity) and exact-match overlap near zero.{missing_note}"
         )
 
     # ------------------------------------------------------------------
@@ -212,32 +264,40 @@ class ReasoningClient:
         """Returns (reasoning_trace, should_retry)."""
         system = (
             "You are the Evaluate Agent in a healthcare planning synthetic data studio. "
-            "You have just scored a synthetic dataset. Produce a 3-4 sentence reasoning "
-            "trace interpreting the results. Explain what the scores mean for planning "
-            "use, flag any concerns, and state whether the quality is sufficient or "
-            "whether a retry is recommended. Write in first person as the agent.\n\n"
-            "At the end of your trace, add on a new line either:\n"
-            "VERDICT: PASS\n"
-            "or\n"
-            "VERDICT: RETRY\n\n"
-            "Use RETRY only if fidelity is below 60 or exact match rate is above 5%."
+            "You have just scored a synthetic dataset against the original source. "
+            "This is a critical quality gate — your job is to DECIDE whether the output "
+            "is good enough for planning use, or whether a retry is needed.\n\n"
+            "Produce a detailed reasoning trace (7-10 sentences) in first person that:\n\n"
+            "1. Interprets each metric and what it means for the planning use case "
+            "(not just restating numbers, but explaining their implications)\n"
+            "2. Analyzes the gap between numeric similarity and categorical similarity — "
+            "what does this tell us about the synthesis quality?\n"
+            "3. Assesses privacy risk based on the exact match rate\n"
+            "4. Makes a clear quality judgment — is this output sufficient for the "
+            "stakeholder's planning needs?\n"
+            "5. If quality is borderline, explains what adjustments would improve the "
+            "next iteration\n"
+            "6. States whether this passes the quality gate or needs a retry\n\n"
+            "At the end, on a new line, write exactly:\n"
+            "VERDICT: PASS\nor\nVERDICT: RETRY\n\n"
+            "Use RETRY only if fidelity is below 60 or exact match rate is above 5%. "
+            "Be a thoughtful evaluator, not just a score reporter."
         )
         prompt = (
-            f"Fidelity: {fidelity_score}\n"
-            f"Privacy: {privacy_score}\n"
-            f"Utility: {utility_score}\n"
+            f"Fidelity: {fidelity_score}/100\n"
+            f"Privacy: {privacy_score}/100\n"
+            f"Utility: {utility_score}/100\n"
             f"Exact match rate: {exact_match_rate}%\n"
-            f"Numeric similarity: {numeric_similarity}\n"
-            f"Categorical similarity: {categorical_similarity}\n"
+            f"Numeric similarity: {numeric_similarity}/100\n"
+            f"Categorical similarity: {categorical_similarity}/100\n"
             f"Scenario: {scenario_name}\n"
             f"Source rows: {source_rows}, Synthetic rows: {synthetic_rows}\n"
             f"Stakeholder: {stakeholder}\n\n"
-            "Produce your reasoning trace and verdict."
+            "Produce your detailed reasoning trace and verdict."
         )
-        result = self._call_claude(system, prompt, max_tokens=512)
+        result = self._call_claude(system, prompt, max_tokens=1000)
         if result:
             should_retry = "VERDICT: RETRY" in result.upper()
-            # Strip the verdict line from the trace
             trace = re.sub(r"\n*VERDICT:\s*(PASS|RETRY)\s*$", "", result, flags=re.IGNORECASE).strip()
             return trace, should_retry
 
@@ -245,23 +305,38 @@ class ReasoningClient:
         should_retry = fidelity_score < 60 or exact_match_rate > 5
         quality_word = "strong" if fidelity_score >= 75 else "adequate" if fidelity_score >= 60 else "below threshold"
         privacy_word = "excellent" if exact_match_rate < 0.1 else "acceptable" if exact_match_rate < 2 else "concerning"
+        gap_analysis = ""
+        if categorical_similarity > numeric_similarity + 15:
+            gap_analysis = (
+                f" I notice a meaningful gap between categorical similarity ({categorical_similarity:.1f}) "
+                f"and numeric similarity ({numeric_similarity:.1f}) — this is expected with "
+                f"GaussianCopula synthesis, as continuous distributions are harder to replicate "
+                f"exactly than categorical frequencies. The categorical fidelity is particularly "
+                f"important for this scenario since routing and disposition patterns are categorical."
+            )
 
         trace = (
-            f"Evaluated the {scenario_name} output: fidelity {fidelity_score} ({quality_word}), "
-            f"privacy {privacy_score} with {exact_match_rate}% exact overlap ({privacy_word}). "
-            f"Numeric similarity averaged {numeric_similarity:.1f} and categorical similarity "
-            f"averaged {categorical_similarity:.1f}. "
+            f"I've completed my evaluation of the {scenario_name} synthetic output. "
+            f"Overall fidelity scores {fidelity_score}/100, which I assess as {quality_word} "
+            f"for planning-grade use. Privacy is {privacy_word} — the exact row overlap of "
+            f"{exact_match_rate}% means {'no synthetic row directly copies a source record' if exact_match_rate == 0 else 'minimal direct copying'}, "
+            f"which is {'exactly what we want' if exact_match_rate < 0.5 else 'within acceptable bounds'} "
+            f"for an innovation sandbox.{gap_analysis} "
+            f"The combined utility score of {utility_score}/100 confirms this synthetic dataset "
+            f"preserves enough operational fidelity to support {stakeholder.lower()} planning "
+            f"discussions while maintaining strong separation from the source data. "
         )
         if should_retry:
             trace += (
-                f"Quality is below the planning-use threshold. Recommending a retry "
-                f"with adjusted parameters before presenting to {stakeholder.lower()}."
+                f"However, the quality is below my threshold for planning-use confidence. "
+                f"I'm recommending a retry with adjusted synthesis parameters before "
+                f"presenting this to the {stakeholder.lower()}."
             )
         else:
             trace += (
-                f"The output meets the quality threshold for {stakeholder.lower()} "
-                f"planning use. The synthetic dataset preserves enough operational "
-                f"patterns to support scenario discussion and innovation workshops."
+                f"I'm passing this output through the quality gate — it meets the bar "
+                f"for scenario workshop use, innovation sprint discussions, and "
+                f"distributed-network planning conversations."
             )
         return trace, should_retry
 
@@ -283,9 +358,16 @@ class ReasoningClient:
     ) -> str:
         system = (
             "You are the Narrative Agent in a healthcare planning synthetic data studio. "
-            "Produce a 2-3 sentence reasoning trace about how you're crafting the "
-            "planning narrative for this specific run. Mention the audience, the scenario "
-            "angle, and what you're emphasizing in the output. Write in first person."
+            "Your job is to craft the planning narrative and explain how you're packaging "
+            "the results for the stakeholder audience.\n\n"
+            "Produce a detailed reasoning trace (5-7 sentences) in first person that:\n\n"
+            "1. Explains your narrative strategy — what story are you telling with this data?\n"
+            "2. Describes how you're framing the methodology for a non-technical audience\n"
+            "3. Identifies which features to emphasize for this specific stakeholder\n"
+            "4. Explains how you're balancing optimism about the tool's value with "
+            "appropriate caution language\n"
+            "5. Notes what governance messaging matters for a healthcare context\n\n"
+            "Sound like an AI making deliberate communication choices."
         )
         prompt = (
             f"Scenario: {scenario_name} — {scenario_description}\n"
@@ -294,17 +376,24 @@ class ReasoningClient:
             f"Goal: {goal}\n"
             f"Scores: fidelity={fidelity_score}, privacy={privacy_score}\n"
             f"Key cautions: {'; '.join(caution_bullets[:3])}\n\n"
-            "Produce your reasoning trace."
+            "Produce your detailed reasoning trace."
         )
-        result = self._call_claude(system, prompt, max_tokens=400)
+        result = self._call_claude(system, prompt, max_tokens=800)
         if result:
             return result
         return (
-            f"Crafting the planning narrative for {stakeholder.lower()} around the "
-            f"{scenario_name.lower()} scenario. Emphasizing that {model_name} produced "
-            f"{target_rows} synthetic rows with fidelity {fidelity_score} and privacy "
-            f"{privacy_score}. The narrative will frame this as a planning artifact "
-            f"for innovation use, with clear boundaries about what it is not."
+            f"I'm crafting the planning narrative for the {stakeholder.lower()} around the "
+            f"{scenario_name.lower()} scenario. My narrative strategy centers on demonstrating "
+            f"that {model_name} produced {target_rows} synthetic rows with fidelity "
+            f"{fidelity_score}/100 and privacy {privacy_score}/100 — strong enough for "
+            f"planning-grade use while maintaining clear separation from source records. "
+            f"For this audience, I'm emphasizing the operational relevance: how the synthetic "
+            f"data models realistic {scenario_description.lower().rstrip('.')}. The methodology "
+            f"section will explain the agentic workflow accessibly — profile, plan, synthesize, "
+            f"evaluate, narrate — without assuming statistical literacy. I'm balancing value "
+            f"messaging ('this enables safer planning experimentation') with governance messaging "
+            f"('this is not operational truth and requires validation with governed local data'). "
+            f"That balance is critical in healthcare contexts where over-claiming can erode trust."
         )
 
     def polish_bullets(

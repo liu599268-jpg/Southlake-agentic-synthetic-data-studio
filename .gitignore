@@ -11,3 +11,4 @@ apps/web/out/
 artifacts/runs/
 artifacts/runs.sqlite3
 
+.env

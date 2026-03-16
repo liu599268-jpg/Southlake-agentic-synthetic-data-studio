@@ -1,16 +1,16 @@
 [
   {
-    "run_id": "6a1dbd99e0",
+    "run_id": "5248d0e0dd",
     "label": "Primary live demo",
     "story_angle": "Distributed health network",
-    "summary": "Best on-stage story for Southlake. Preserves volume while shifting observation, handoff, and discharge pathways across a distributed-health-network scenario. Full agentic reasoning traces at every step.",
+    "summary": "Best on-stage story for Southlake. Full Claude reasoning traces showing real AI decision-making at every step. Preserves volume while shifting observation, handoff, and discharge pathways.",
     "screenshot_path": null
   },
   {
-    "run_id": "bf7b40f010",
+    "run_id": "1a900967f5",
     "label": "Backup capacity walk-through",
     "story_angle": "ED resilience",
-    "summary": "Fallback story if judges want a more familiar operations example. Highlights surge pressure, ambulance mix, and throughput stress with visible AI reasoning throughout.",
+    "summary": "Fallback story with full Claude reasoning. Highlights surge pressure, ambulance mix, and throughput stress with visible AI reasoning throughout.",
     "screenshot_path": null
   }
 ]

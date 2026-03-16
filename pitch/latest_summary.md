@@ -1,16 +1,16 @@
-# Southlake Pitch Draft bf7b40f010
+# Southlake Pitch Draft 1a900967f5
 
 ## Methodology
-- Loaded a curated NHAMCS emergency dataset and profiled its operational schema for emergency operations lead planning work.
-- Used GaussianCopulaSynthesizer to synthesize 17010 rows, then applied a ed surge layer tied to Southlake's distributed-network future state.
-- Evaluated the result on fidelity, leakage risk, and scenario plausibility before generating pitch-ready planning artifacts.
+- Emergency department surge scenario testing demonstrates how Southlake Regional can proactively model performance under high-stress conditions including increased patient arrivals and extended care delivery times
+- Synthetic data generation achieved 78.97% fidelity while maintaining 100% patient privacy protection, enabling realistic stress-testing without compromising sensitive healthcare information
+- The simulation framework allows healthcare leaders to evaluate operational resilience and identify potential bottlenecks before they impact real patient care during crisis situations
 
 ## Features
-- Single-click preset loading, upload support, and agent-style planning runs for Southlake-style service design questions.
-- Synthetic output preview with fidelity, privacy, and utility metrics in one dashboard for innovation teams.
-- Auto-generated methodology, feature, and caution copy for the 3-slide presentation and backup materials.
+- Healthcare facilities can simulate increased patient demand scenarios to test capacity planning and resource allocation strategies during peak periods or emergency situations.
+- The system models patient acuity distribution changes, allowing teams to evaluate triage protocols and staffing requirements when case complexity shifts toward higher-priority conditions.
+- Organizations can analyze the operational impact of extended patient flow times to optimize scheduling, reduce bottlenecks, and improve overall facility efficiency.
 
 ## Cautions
-- Use synthetic outputs for planning workshops, innovation sprints, workflow prototyping, and scenario discussion only.
-- Do not treat this dataset as a substitute for governed Southlake patient data or operational truth.
-- Rare cohorts and local Ontario care patterns are not faithfully represented in a U.S. national public-use source.
+- This synthetic dataset is designed exclusively for healthcare planning workshops and innovation prototyping sessions, not for actual patient care decisions or operational implementation.
+- The data represents generalized U.S. patterns and may not accurately reflect Southlake's specific patient populations or Ontario healthcare delivery models.
+- Any insights generated from this prototype must be validated with real organizational data and approved through proper governance channels before moving to production.
