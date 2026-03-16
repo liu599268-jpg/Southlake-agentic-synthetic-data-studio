@@ -92,3 +92,32 @@ a {
     linear-gradient(90deg, rgba(16, 42, 67, 0.03) 1px, transparent 1px);
   background-size: 1.25rem 1.25rem;
 }
+
+/* Agent timeline styles */
+@keyframes timeline-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.agent-dot {
+  animation: timeline-pulse 2s ease-in-out infinite;
+}
+
+.agent-card-glow {
+  box-shadow: 0 0 0 0 rgba(27, 186, 177, 0);
+  transition: box-shadow 0.3s ease;
+}
+
+.agent-card-glow:hover {
+  box-shadow: 0 0 0 3px rgba(27, 186, 177, 0.15);
+}
+
+@keyframes reasoning-fade-in {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 600px; }
+}
+
+.reasoning-expand {
+  animation: reasoning-fade-in 0.3s ease-out forwards;
+  overflow: hidden;
+}

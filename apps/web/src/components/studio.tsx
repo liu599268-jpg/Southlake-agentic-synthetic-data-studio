@@ -245,6 +245,7 @@ export function Studio() {
   const [loadingRunId, setLoadingRunId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [run, setRun] = useState<RunResponse | null>(null);
+  const [expandedAgent, setExpandedAgent] = useState<string | null>(null);
 
   useEffect(() => {
     const loadPreset = async () => {
@@ -449,9 +450,9 @@ export function Studio() {
                   scenario selection, and fast backup run loading.
                 </p>
                 <p>
-                  Backend: FastAPI planning pipeline with profiling, synthesis,
-                  evaluation, artifact generation, and optional OpenAI copy
-                  polish.
+                  Backend: FastAPI agentic pipeline with Claude reasoning at
+                  every step — profiling, strategy, synthesis, evaluation with
+                  retry, and narrative generation.
                 </p>
                 <p>
                   Source: curated NHAMCS 2022 emergency-department public-use
@@ -798,41 +799,78 @@ export function Studio() {
                 </div>
               </div>
 
-              <div className="mt-6">
-                <div className="mb-3 flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-emerald-500" />
-                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    Agent reasoning timeline — powered by Claude
+              <div className="mt-6 rounded-[2rem] border border-slate-900/8 bg-slate-950 p-6">
+                <div className="mb-5 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="agent-dot h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                    <span className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-300">
+                      Agent Reasoning Timeline
+                    </span>
+                  </div>
+                  <span className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-slate-400">
+                    Powered by Claude · Anthropic
                   </span>
                 </div>
-                <div className="grid gap-4 lg:grid-cols-5">
-                  {run.timeline.map((step) => (
-                    <div
-                      key={step.id}
-                      className="rounded-[1.6rem] border border-slate-900/8 bg-white/85 p-4"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                          {step.name}
+
+                <div className="flex gap-3">
+                  {run.timeline.map((step, index) => (
+                    <div key={step.id} className="flex flex-1 items-start gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setExpandedAgent(expandedAgent === step.id ? null : step.id)}
+                        className="agent-card-glow flex-1 cursor-pointer rounded-[1.4rem] border border-white/8 bg-white/5 p-4 text-left transition hover:bg-white/8"
+                      >
+                        <div className="flex items-center gap-2">
+                          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 text-xs font-bold text-white">
+                            {index + 1}
+                          </div>
+                          <div className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-300">
+                            {step.name}
+                          </div>
                         </div>
+                        <p className="mt-2 text-xs leading-5 text-slate-400">
+                          {step.summary.length > 80 ? step.summary.slice(0, 80) + "..." : step.summary}
+                        </p>
+                        {step.reasoning && (
+                          <div className="mt-2 flex items-center gap-1.5">
+                            <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                            <span className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-emerald-400/70">
+                              {expandedAgent === step.id ? "Click to collapse" : "Click to view reasoning"}
+                            </span>
+                          </div>
+                        )}
                         {step.status !== "completed" && (
-                          <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[0.65rem] font-semibold text-amber-800">
+                          <span className="mt-2 inline-block rounded-full bg-amber-500/20 px-2 py-0.5 text-[0.6rem] font-semibold text-amber-300">
                             {step.status}
                           </span>
                         )}
-                      </div>
-                      {step.reasoning ? (
-                        <p className="mt-3 text-sm italic leading-6 text-slate-600">
-                          &ldquo;{step.reasoning}&rdquo;
-                        </p>
-                      ) : (
-                        <p className="mt-3 text-sm leading-6 text-slate-700">
-                          {step.summary}
-                        </p>
+                      </button>
+                      {index < run.timeline.length - 1 && (
+                        <div className="mt-8 flex-shrink-0 text-lg text-emerald-500/40">→</div>
                       )}
                     </div>
                   ))}
                 </div>
+
+                {expandedAgent && (() => {
+                  const step = run.timeline.find((s) => s.id === expandedAgent);
+                  if (!step?.reasoning) return null;
+                  return (
+                    <div className="reasoning-expand mt-4 rounded-[1.4rem] border border-emerald-500/15 bg-emerald-950/30 p-5">
+                      <div className="mb-3 flex items-center gap-2">
+                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 text-[0.6rem] font-bold text-white">
+                          AI
+                        </div>
+                        <span className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-300">
+                          {step.name} — Claude&apos;s Reasoning Trace
+                        </span>
+                      </div>
+                      <p className="text-sm leading-7 text-slate-300">
+                        &ldquo;{step.reasoning}&rdquo;
+                      </p>
+                    </div>
+                  );
+                })()}
               </div>
             </div>
 
