@@ -23,21 +23,21 @@
 - [x] Recommended speaker-role split documented (Zhou1, Zhou2, Huang)
 - [x] Timed run-of-show documented
 - [x] Source citations compiled
-- [x] Claude (Anthropic) agentic reasoning integrated at every pipeline step
+- [x] LLM agentic reasoning integrated at every pipeline step
 - [x] Reasoning traces visible in agent timeline UI
 - [x] Evaluate Agent retry loop implemented
 - [x] Technical explainer written for presenters (12-technical-explainer.md)
 - [x] Agentic explainer written for presenters (13-agentic-explainer.md)
 - [x] Data explainer written for presenters (14-data-explainer.md)
 - [x] Speaker scripts written with real names and exact talk tracks
-- [x] Judge Q&A updated with agentic and Claude-specific answers
+- [x] Judge Q&A updated with agentic and LLM-specific answers
 
 ### Remaining
 
 - [ ] Rebuild 3-slide deck in Keynote with proper visual design
-- [ ] Re-generate demo runs with new agentic pipeline (with or without Anthropic key)
+- [ ] Re-generate demo runs with new agentic pipeline (with or without API key)
 - [ ] Update screenshots after new pipeline runs
-- [ ] Set up Anthropic API key in .env for live Claude reasoning
+- [ ] Set up LLM API key in .env for live reasoning
 - [ ] Final speaker rehearsal (all 3 presenters)
 - [ ] Final demo timing rehearsal
 - [ ] Final pitch-day laptop check

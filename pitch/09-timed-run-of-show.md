@@ -15,12 +15,12 @@ Total: 20 minutes. Target 16-17 minutes of content, 3-4 minutes buffer.
 ### 3:20 – 6:30 | Zhou2
 - **Goal:** Show the product quickly and reliably
 - **Action:** Open `http://127.0.0.1:3100`, click "Load recommended demo run", scroll to results
-- **Key callout:** Point to the agent reasoning timeline — "each step shows what Claude reasoned and decided"
+- **Key callout:** Point to the agent reasoning timeline — "each step shows what the LLM reasoned and decided"
 
 ### 6:30 – 8:10 | Zhou2
 - **Goal:** Highlight what judges should remember
 - **Focus:**
-  - Agent reasoning timeline (Claude's visible thinking at each step)
+  - Agent reasoning timeline (LLM's visible thinking at each step)
   - Fidelity, privacy, and utility scores
   - Source versus synthetic preview
   - Pitch-ready methodology/features/cautions
@@ -28,7 +28,7 @@ Total: 20 minutes. Target 16-17 minutes of content, 3-4 minutes buffer.
 
 ### 8:10 – 10:30 | Zhou1
 - **Goal:** Walk Slide 1 (Methodology)
-- **Message:** The product is agentic because Claude reasons at every step — vending machine vs chef analogy
+- **Message:** The product is agentic because the LLM reasons at every step — vending machine vs chef analogy
 - **Key point:** Strategy Agent decides approach, Evaluate Agent can retry — that's the reasoning loop
 
 ### 10:30 – 12:50 | Zhou2
@@ -59,7 +59,7 @@ Total: 20 minutes. Target 16-17 minutes of content, 3-4 minutes buffer.
 
 ## Success Conditions
 
-- Judges understand why this is agentic (Claude reasons, not scripted)
+- Judges understand why this is agentic (LLM reasons, not scripted)
 - Judges understand why this is relevant to Southlake specifically
 - Judges see the product working (even if only saved run)
 - Judges remember the caution boundary — honest team = credible team

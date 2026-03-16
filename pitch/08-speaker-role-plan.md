@@ -30,7 +30,7 @@
 
 > "Our methodology is what the brief calls 'agentic.' Think of the difference between a vending machine and a chef. A vending machine does the same thing every time — press a button, get an output. A chef looks at the ingredients, considers what you asked for, makes a plan, cooks it, tastes it, adjusts, and explains what they made. Our system is the chef."
 
-> "Claude — Anthropic's AI — powers five agent steps. The Intent Agent frames the planning question. The Profile Agent analyzes the dataset. The Strategy Agent — and this is key — uses AI reasoning to *decide* the best synthesis approach for this specific data and scenario. It doesn't use a fixed formula. Then the Evaluate Agent checks its own work — if quality is below threshold, it adjusts and retries. Finally, the Narrative Agent writes planning-grade summaries."
+> "An LLM powers five agent steps. The Intent Agent frames the planning question. The Profile Agent analyzes the dataset. The Strategy Agent — and this is key — uses AI reasoning to *decide* the best synthesis approach for this specific data and scenario. It doesn't use a fixed formula. Then the Evaluate Agent checks its own work — if quality is below threshold, it adjusts and retries. Finally, the Narrative Agent writes planning-grade summaries."
 
 > "The emphasis in the brief was 'how the system thinks and acts, not just the data it produces.' That's exactly what we built. The thinking is visible at every step."
 

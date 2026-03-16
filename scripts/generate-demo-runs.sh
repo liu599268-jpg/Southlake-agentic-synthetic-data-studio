@@ -17,7 +17,7 @@ echo "✅ API is running"
 
 echo ""
 echo "--- Generating primary demo run (Distributed Campus Routing) ---"
-echo "   This may take 30-60 seconds if Claude API is configured..."
+echo "   This may take 30-60 seconds if LLM API is configured..."
 
 PRIMARY_ID=$(curl -s -X POST "$API_BASE/api/runs" \
   -F "goal=Create a planning-grade synthetic dataset that helps Southlake innovation teams test distributed-campus routing, observation demand, and community handoff assumptions without using real patient records." \
@@ -47,14 +47,14 @@ cat > pitch/backup/demo_runs.json << EOF
     "run_id": "$PRIMARY_ID",
     "label": "Primary live demo",
     "story_angle": "Distributed health network",
-    "summary": "Best on-stage story for Southlake. Full Claude reasoning traces, per-column fidelity breakdown, and source-vs-synthetic distribution charts.",
+    "summary": "Best on-stage story for Southlake. Full LLM reasoning traces, per-column fidelity breakdown, and source-vs-synthetic distribution charts.",
     "screenshot_path": null
   },
   {
     "run_id": "$BACKUP_ID",
     "label": "Backup capacity walk-through",
     "story_angle": "ED resilience",
-    "summary": "Fallback story with full Claude reasoning and analytical charts. Highlights surge pressure and throughput stress.",
+    "summary": "Fallback story with full LLM reasoning and analytical charts. Highlights surge pressure and throughput stress.",
     "screenshot_path": null
   }
 ]

@@ -14,19 +14,19 @@ Prepared answers for likely judge questions. Assigned to the most appropriate sp
 ### Q2. What makes this agentic?
 **Who answers:** Zhou1
 
-"The system uses Claude — Anthropic's AI model — to make decisions at every step. It's not a fixed script. The AI analyzes the dataset, reasons about the best synthesis strategy, evaluates its own output, and can retry if quality isn't sufficient. Each step produces a visible reasoning trace. The brief said the emphasis should be on 'how the system thinks and acts' — that's exactly what we built."
+"The system uses an LLM to make decisions at every step. It's not a fixed script. The AI analyzes the dataset, reasons about the best synthesis strategy, evaluates its own output, and can retry if quality isn't sufficient. Each step produces a visible reasoning trace. The brief said the emphasis should be on 'how the system thinks and acts' — that's exactly what we built."
 
 **If they push harder:** "Think of it like the difference between a vending machine and a chef. A vending machine does the same thing every time. Our system looks at each specific dataset and goal, reasons about the best approach, checks its work, and adapts. That adaptive reasoning is what makes it agentic."
 
 ### Q3. Where exactly is the AI reasoning?
 **Who answers:** Zhou1
 
-"Claude powers five agent steps. The most important one is the Strategy Agent — it doesn't use a fixed formula to decide how to synthesize data. It looks at the data profile, the scenario, and the planning goal, then reasons about the best approach. You can see that reasoning in the agent timeline on screen. The Evaluate Agent also uses AI to interpret results and decide if a retry is needed."
+"The LLM powers five agent steps. The most important one is the Strategy Agent — it doesn't use a fixed formula to decide how to synthesize data. It looks at the data profile, the scenario, and the planning goal, then reasons about the best approach. You can see that reasoning in the agent timeline on screen. The Evaluate Agent also uses AI to interpret results and decide if a retry is needed."
 
-### Q4. Why Claude instead of GPT?
+### Q4. Which LLM do you use?
 **Who answers:** Zhou1
 
-"Claude is strong at structured reasoning and following multi-step instructions carefully. For a healthcare planning context where we need the AI to reason transparently about data quality and limitations, Claude's reasoning style is a good fit. But the architecture is model-agnostic — it could use any reasoning model."
+"We use a reasoning-grade LLM that is strong at structured reasoning and following multi-step instructions carefully. For a healthcare planning context where we need the AI to reason transparently about data quality and limitations, this kind of model is a good fit. The architecture is model-agnostic — it could use any capable reasoning model."
 
 ### Q5. Why use a U.S. public dataset instead of Ontario data?
 **Who answers:** Huang
@@ -84,7 +84,7 @@ Prepared answers for likely judge questions. Assigned to the most appropriate sp
 ### Q14. What's your tech stack?
 **Who answers:** Zhou2
 
-"FastAPI for the Python backend, Next.js with React for the frontend, Tailwind CSS for styling, SQLite for run history, SDV for synthetic data generation, and Claude for AI reasoning. The frontend and backend communicate through a REST API."
+"FastAPI for the Python backend, Next.js with React for the frontend, Tailwind CSS for styling, SQLite for run history, SDV for synthetic data generation, and LLM-powered reasoning. The frontend and backend communicate through a REST API."
 
 ---
 

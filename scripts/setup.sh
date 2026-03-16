@@ -61,11 +61,11 @@ if [ ! -f ".env" ]; then
     echo "⚠️  No .env file found. Creating from example..."
     cp .env.example .env
     echo ""
-    echo "🔑 IMPORTANT: Edit .env and add your Anthropic API key:"
+    echo "🔑 IMPORTANT: Edit .env and add your LLM API key:"
     echo "   ANTHROPIC_API_KEY=sk-ant-..."
     echo ""
     echo "   Without it, the pipeline works but uses pre-built reasoning."
-    echo "   With it, Claude generates real reasoning at every step."
+    echo "   With it, the LLM generates real reasoning at every step."
 else
     echo "✅ .env file exists"
 fi

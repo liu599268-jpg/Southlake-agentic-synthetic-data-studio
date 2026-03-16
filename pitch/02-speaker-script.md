@@ -48,7 +48,7 @@ Synthetic data solves this. It gives innovation teams a way to test ideas in a s
 
 *When results appear, scroll slowly:*
 
-"At the top, the agent timeline — five steps, each showing what the AI reasoned and decided. This is what makes our system agentic: Claude, Anthropic's AI model, powers every step."
+"At the top, the agent timeline — five steps, each showing what the AI reasoned and decided. This is what makes our system agentic: an LLM powers every step."
 
 *Point to metrics:*
 
@@ -88,7 +88,7 @@ Think of the difference between a vending machine and a chef. A vending machine 
 
 Our system is the chef.
 
-Claude powers five agent steps. The Intent Agent frames the planning question based on the user's goal. The Profile Agent analyzes the dataset — not just counting rows, but reasoning about what's relevant for the planning question.
+The LLM powers five agent steps. The Intent Agent frames the planning question based on the user's goal. The Profile Agent analyzes the dataset — not just counting rows, but reasoning about what's relevant for the planning question.
 
 The Strategy Agent is where the real decision-making happens. It uses AI reasoning to decide the best synthesis approach for this specific data and scenario. Not a fixed formula — actual reasoning.
 
