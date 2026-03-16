@@ -243,7 +243,12 @@ function DemoRunCard({
 function FidelityChart({ data }: { data: ColumnFidelity[] }) {
   if (!data.length) return null;
 
-  const chartData = data.map((item) => ({
+  // Separate into interesting columns (below 98%) and near-perfect ones
+  const interestingThreshold = 98;
+  const interesting = data.filter((item) => item.score < interestingThreshold);
+  const nearPerfect = data.filter((item) => item.score >= interestingThreshold);
+
+  const chartData = interesting.map((item) => ({
     name: item.column.replaceAll("_", " "),
     score: item.score,
     type: item.column_type,
@@ -257,7 +262,7 @@ function FidelityChart({ data }: { data: ColumnFidelity[] }) {
             Per-Column Fidelity Breakdown
           </p>
           <h3 className="section-title mt-1 text-xl font-semibold text-slate-950">
-            How well each column was preserved
+            Synthesis quality by column
           </h3>
         </div>
         <div className="flex gap-3">
@@ -272,36 +277,64 @@ function FidelityChart({ data }: { data: ColumnFidelity[] }) {
         </div>
       </div>
       <p className="mt-2 text-xs leading-5 text-slate-500">
-        Numeric scores compare statistical means (normalized by standard deviation). Categorical scores measure distribution overlap (Total Variation Distance). Higher = more faithful to source patterns.
+        Numeric: mean distance normalized by standard deviation. Categorical: Total Variation Distance between frequency distributions. Higher = more faithful to source.
       </p>
-      <div className="mt-3" style={{ height: 320 }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={chartData} layout="vertical" margin={{ left: 120, right: 20, top: 5, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(16,42,67,0.06)" horizontal={false} />
-            <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 11, fill: "#5a7184" }} />
-            <YAxis type="category" dataKey="name" tick={{ fontSize: 11, fill: "#5a7184" }} width={115} />
-            <Tooltip
-              contentStyle={{
-                background: "#0f2b3c",
-                border: "none",
-                borderRadius: 12,
-                color: "white",
-                fontSize: 13,
-              }}
-              formatter={(value) => [`${Number(value).toFixed(1)}%`, "Fidelity"]}
-            />
-            <Bar dataKey="score" radius={[0, 6, 6, 0]} maxBarSize={22}>
-              {chartData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={entry.type === "numeric" ? "#6366f1" : "#f59e0b"}
-                  fillOpacity={entry.score > 80 ? 1 : entry.score > 60 ? 0.8 : 0.55}
-                />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+
+      {chartData.length > 0 && (
+        <div className="mt-3" style={{ height: Math.max(200, chartData.length * 36) }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData} layout="vertical" margin={{ left: 140, right: 30, top: 5, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(16,42,67,0.06)" horizontal={false} />
+              <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 11, fill: "#5a7184" }} unit="%" />
+              <YAxis type="category" dataKey="name" tick={{ fontSize: 11, fill: "#5a7184" }} width={135} />
+              <Tooltip
+                contentStyle={{
+                  background: "#0f2b3c",
+                  border: "none",
+                  borderRadius: 12,
+                  color: "white",
+                  fontSize: 13,
+                }}
+                formatter={(value) => [`${Number(value).toFixed(1)}%`, "Fidelity"]}
+              />
+              <Bar dataKey="score" radius={[0, 6, 6, 0]} maxBarSize={24}>
+                {chartData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={entry.type === "numeric" ? "#6366f1" : "#f59e0b"}
+                    fillOpacity={entry.score > 80 ? 1 : entry.score > 60 ? 0.8 : 0.55}
+                  />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+
+      {nearPerfect.length > 0 && (
+        <div className="mt-4 rounded-[1.4rem] border border-slate-900/6 bg-emerald-50/60 px-5 py-3">
+          <div className="flex items-center gap-2">
+            <div className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-700">
+              Near-perfect preservation ({nearPerfect.length} columns, {interestingThreshold}%+)
+            </div>
+          </div>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {nearPerfect.map((item) => (
+              <span
+                key={item.column}
+                className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-white px-3 py-1 text-xs text-slate-700"
+              >
+                <span className="h-1.5 w-1.5 rounded-full" style={{ background: item.column_type === "numeric" ? "#6366f1" : "#f59e0b" }} />
+                {item.column.replaceAll("_", " ")}
+                <span className="font-semibold text-emerald-700">{item.score}%</span>
+              </span>
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-slate-500">
+            Low-cardinality categorical columns and well-behaved numeric columns are preserved with near-zero distributional drift.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
