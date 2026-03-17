@@ -259,7 +259,8 @@ def build_slide_one(prs: Presentation) -> None:
     body_paragraph.text = (
         "We turn safe public ED data into synthetic planning artifacts for "
         "Southlake's distributed-health-network questions, then make the "
-        "limitations visible before anyone over-trusts the output."
+        "limitations visible. Reasoning supported by theFinlyApp — an agentic "
+        "intelligence platform adapted for healthcare planning."
     )
     body_paragraph.font.name = "Aptos"
     body_paragraph.font.size = Pt(17)
@@ -337,7 +338,7 @@ def build_slide_one(prs: Presentation) -> None:
     )
     graphic_card.shadow.inherit = False
     slide.shapes.add_picture(
-        str(ASSETS_DIR / "architecture-workflow.png"),
+        str(ASSETS_DIR / "deck-reasoning.png"),
         Inches(5.72),
         Inches(2.26),
         width=Inches(6.8),
@@ -371,13 +372,14 @@ def build_slide_one(prs: Presentation) -> None:
 
 
 def build_slide_two(prs: Presentation) -> None:
+    demo = {"run_id": "f24271e772", "scenario_name": "Distributed Campus Routing", "fidelity": 87.8, "privacy": 100.0, "utility": 92.7}
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     add_soft_background(slide)
     add_header_with_layout(
         slide,
         "Features",
         "What The Studio Actually Does",
-        "Saved demo reliability, visible evaluation, and exportable artifacts for innovation teams.",
+        "Visible evaluation, synthetic data output, and exportable artifacts — the studio shows its work at every step.",
         2,
         title_font_size=25,
         title_height=0.82,
@@ -395,7 +397,7 @@ def build_slide_two(prs: Presentation) -> None:
         line_rgb=RGBColor(228, 233, 237),
     )
     slide.shapes.add_picture(
-        str(ASSETS_DIR / "run-focus.png"),
+        str(ASSETS_DIR / "slide2-combined.png"),
         Inches(0.84),
         Inches(2.04),
         width=Inches(6.76),
@@ -403,10 +405,10 @@ def build_slide_two(prs: Presentation) -> None:
     )
 
     labels = [
-        ("Saved demo run", Inches(0.98), Inches(1.92), TEAL_SOFT, GREEN_TEXT),
-        ("Scenario controls", Inches(2.68), Inches(1.92), SAND, GOLD_TEXT),
-        ("Metrics", Inches(4.36), Inches(1.92), RGBColor(231, 242, 255), TEAL),
-        ("Pitch + cautions", Inches(5.53), Inches(6.22), RGBColor(255, 239, 234), RED_TEXT),
+        ("Fidelity analysis", Inches(0.98), Inches(1.92), TEAL_SOFT, GREEN_TEXT),
+        ("Distribution charts", Inches(2.68), Inches(1.92), SAND, GOLD_TEXT),
+        ("Source vs synthetic", Inches(4.36), Inches(1.92), RGBColor(231, 242, 255), TEAL),
+        ("Data output", Inches(5.53), Inches(6.22), RGBColor(255, 239, 234), RED_TEXT),
     ]
     for text, left, top, fill_rgb, font_rgb in labels:
         chip = add_card(
@@ -443,10 +445,10 @@ def build_slide_two(prs: Presentation) -> None:
     add_bullets(
         slide,
         [
-            "Southlake-specific scenarios aligned to distributed-network planning needs",
-            "One-click saved demo runs plus optional fresh synthesis or CSV upload",
-            "Visible fidelity, privacy, and utility metrics in one screen",
-            "Auto-generated methodology, features, and cautions for pitch preparation",
+            "Per-column fidelity scoring — numeric and categorical columns evaluated separately with clear visual breakdown",
+            "Source-vs-synthetic distribution charts show how well the generated data preserves real ED patterns",
+            "Side-by-side data preview lets planners compare source and synthetic rows directly",
+            "Exportable evaluation package — synthetic dataset, metrics, caution report, and pitch artifacts in one ZIP",
         ],
         Inches(8.1),
         Inches(2.2),
@@ -475,7 +477,7 @@ def build_slide_two(prs: Presentation) -> None:
     heading_run.font.color.rgb = RGBColor(174, 239, 215)
 
     run_line = saved_run_card.text_frame.add_paragraph()
-    run_line.text = "Distributed Campus Routing | run 72c9c81912"
+    run_line.text = f"{demo['scenario_name']} | run {demo['run_id']}"
     run_line.font.name = "Aptos"
     run_line.font.size = Pt(16)
     run_line.font.bold = True
@@ -483,7 +485,7 @@ def build_slide_two(prs: Presentation) -> None:
     run_line.space_after = Pt(6)
 
     metric_line = saved_run_card.text_frame.add_paragraph()
-    metric_line.text = "Fidelity 81.54   Privacy 100.0   Utility 88.92"
+    metric_line.text = f"Fidelity {demo['fidelity']:.1f}   Privacy {demo['privacy']:.1f}   Utility {demo['utility']:.1f}"
     metric_line.font.name = "Aptos"
     metric_line.font.size = Pt(13)
     metric_line.font.color.rgb = WHITE

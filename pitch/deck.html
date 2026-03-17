@@ -27,7 +27,7 @@
     font-family: 'IBM Plex Sans', sans-serif;
     color: var(--ink);
     background: var(--bg);
-    overflow: hidden;
+    overflow: auto;
   }
 
   .slide {
@@ -85,7 +85,7 @@
   }
   .s1 .title-block h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 46px; font-weight: 700;
+    font-size: 48px; font-weight: 700;
     letter-spacing: -0.04em; line-height: 1.14;
     color: var(--ink);
   }
@@ -96,15 +96,15 @@
   }
 
   .s1 .flow-container {
-    position: absolute; top: 420px; left: 64px; right: 64px;
-    display: flex; gap: 16px;
+    position: absolute; top: 430px; left: 64px; right: 64px;
+    display: flex; gap: 14px;
   }
   .s1 .flow-step {
     flex: 1;
     background: var(--panel);
     border: 1px solid var(--stroke);
     border-radius: 24px;
-    padding: 22px 20px;
+    padding: 20px 18px;
     backdrop-filter: blur(12px);
     box-shadow: 0 8px 32px rgba(16,42,67,0.06);
     position: relative;
@@ -459,12 +459,12 @@
 
   <div class="title-block">
     <h1>From Public ED Data to<br>Southlake Future-State<br>Planning Scenarios</h1>
-    <p class="subtitle">An agentic workflow — with reasoning technically supported by theFinlyApp — that turns safe public ED data into synthetic planning artifacts, then makes limitations visible before anyone over-trusts the output.</p>
+    <p class="subtitle">An agentic workflow — with reasoning and analysis technically supported by theFinlyApp — that turns safe public emergency department data into synthetic planning artifacts, then makes the limitations visible before anyone over-trusts the output.</p>
   </div>
 
   <div class="core-message">
     <div class="cm-label">Core Message for Judges</div>
-    <p>The emphasis is on <strong style="color:var(--teal)">how the system thinks and acts</strong>, not just the data it produces. Reasoning and analysis technically supported by <strong style="color:var(--teal)">theFinlyApp</strong> — powering every step from intent framing through quality evaluation and self-correction.</p>
+    <p>The emphasis is on <strong style="color:var(--teal)">how the system thinks and acts</strong>, not just the data it produces. The agentic reasoning and analysis engine is technically supported by <strong style="color:var(--teal)">theFinlyApp</strong> — powering every step from intent framing to quality evaluation.</p>
   </div>
 
   <div class="flow-container">
@@ -504,25 +504,25 @@
     </div>
   </div>
 
-  <!-- Demo screenshot: how the agent reasoning looks in the live product -->
-  <div style="position:absolute; bottom:48px; left:64px; right:64px; display:flex; gap:20px; height:340px;">
-    <div style="width:380px; display:flex; flex-direction:column; gap:12px; flex-shrink:0;">
-      <div class="bottom-card" style="flex:1;">
+  <!-- Bottom: info cards + demo screenshot showing agent reasoning -->
+  <div style="position:absolute; bottom:48px; left:64px; right:64px; display:flex; gap:16px; height:320px;">
+    <div style="width:360px; display:flex; flex-direction:column; gap:10px; flex-shrink:0;">
+      <div class="bottom-card" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
         <div class="label">Input → Output</div>
-        <p>13,085 public ED visits, 21 columns → synthetic dataset + evaluation metrics + caution report + pitch artifacts + ZIP</p>
+        <p>13,085 public ED visits, 21 columns → synthetic dataset + evaluation + caution report + pitch artifacts + ZIP</p>
       </div>
-      <div class="bottom-card" style="flex:1;">
+      <div class="bottom-card" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
         <div class="label">Southlake Scenarios</div>
-        <p>Distributed campus routing · Community diversion · Regional growth · ED surge — each modeling a different planning question</p>
+        <p>Distributed campus routing · Community diversion · Regional growth · ED surge</p>
       </div>
-      <div class="bottom-card" style="flex:1;">
+      <div class="bottom-card" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
         <div class="label">What Makes It Agentic</div>
         <p>AI reasons at each step · Strategy adapts to data · Evaluate triggers retries · Powered by theFinlyApp</p>
       </div>
     </div>
-    <div style="flex:1; border-radius:20px; overflow:hidden; border:1px solid rgba(16,42,67,0.1); box-shadow:0 12px 40px rgba(16,42,67,0.12); position:relative;">
-      <img src="assets/deck-reasoning.png" alt="Live demo: agent reasoning timeline with Strategy Agent expanded" style="width:100%; height:100%; object-fit:cover; object-position:top center; display:block;">
-      <div style="position:absolute; bottom:0; left:0; right:0; padding:12px 18px; background:linear-gradient(transparent, rgba(15,43,60,0.92)); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal);">Live demo — Agent reasoning timeline with Strategy Agent's AI decision trace</div>
+    <div style="flex:1; border-radius:20px; overflow:hidden; border:1px solid var(--stroke); box-shadow:0 12px 40px rgba(16,42,67,0.12); position:relative;">
+      <img src="assets/deck-reasoning.png" alt="Live demo: agent reasoning timeline" style="width:100%; height:100%; object-fit:cover; object-position:top center; display:block;">
+      <div style="position:absolute; bottom:0; left:0; right:0; padding:12px 18px; background:linear-gradient(transparent, rgba(15,43,60,0.92)); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal);">Live demo — Agent reasoning with Strategy Agent's AI decision trace expanded</div>
     </div>
   </div>
 </div>
@@ -586,11 +586,11 @@
     <!-- Real demo screenshots -->
     <div style="flex:1; display:flex; gap:12px; margin-top:14px;">
       <div style="flex:1; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); position:relative;">
-        <img src="assets/deck-features.png" alt="Studio landing with scenarios, builder, profile" style="width:100%; height:100%; object-fit:cover; object-position:top left; display:block;">
+        <img src="assets/deck-features.png" alt="Studio landing" style="width:100%; height:100%; object-fit:cover; object-position:top left; display:block;">
         <div style="position:absolute; bottom:0; left:0; right:0; padding:10px 14px; background:linear-gradient(transparent,rgba(15,43,60,0.92)); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal);">Studio — Scenarios, saved runs, builder, dataset profile</div>
       </div>
       <div style="flex:1; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); position:relative;">
-        <img src="assets/deck-analysis.png" alt="Fidelity chart, distribution comparisons" style="width:100%; height:100%; object-fit:cover; object-position:top left; display:block;">
+        <img src="assets/deck-analysis.png" alt="Fidelity and distribution charts" style="width:100%; height:100%; object-fit:cover; object-position:top left; display:block;">
         <div style="position:absolute; bottom:0; left:0; right:0; padding:10px 14px; background:linear-gradient(transparent,rgba(15,43,60,0.92)); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal);">Evaluation — Per-column fidelity, distribution comparisons</div>
       </div>
     </div>

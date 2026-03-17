@@ -63,6 +63,19 @@ EOF
 echo "✅ Demo manifest updated"
 
 echo ""
+echo "--- Syncing backup artifacts ---"
+
+cp "artifacts/runs/$PRIMARY_ID/report.json" "pitch/backup/primary-report.json"
+cp "artifacts/runs/$PRIMARY_ID/$PRIMARY_ID.zip" "pitch/backup/primary-distributed-network.zip"
+cp "artifacts/runs/$PRIMARY_ID/run-$PRIMARY_ID.md" "pitch/backup/latest-summary.md"
+cp "artifacts/runs/$PRIMARY_ID/run-$PRIMARY_ID.md" "pitch/latest_summary.md"
+
+cp "artifacts/runs/$BACKUP_ID/report.json" "pitch/backup/backup-report.json"
+cp "artifacts/runs/$BACKUP_ID/$BACKUP_ID.zip" "pitch/backup/backup-ed-surge.zip"
+
+echo "✅ Backup reports, ZIPs, and latest summary synced"
+
+echo ""
 echo "======================================"
 echo "Demo runs ready!"
 echo "======================================"

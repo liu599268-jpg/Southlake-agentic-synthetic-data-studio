@@ -19,8 +19,9 @@ Use this folder as the working set for pitch-day prep.
 
 ## Generated Artifacts
 
+- `deck.html`: historical web deck version retained for reference
 - `latest_summary.md`: latest auto-generated methodology/features/cautions draft from the app
-- `Southlake-Agentic-Synthetic-Data-Studio-Deck.pptx`: generated 3-slide PowerPoint deck
+- `Southlake-Agentic-Synthetic-Data-Studio-Deck.pptx`: generated native editable 3-slide PowerPoint deck
 - `Southlake-Agentic-Synthetic-Data-Studio-Deck.pdf`: generated PDF backup of the same deck
 - `assets/architecture-workflow.svg`: slide-ready architecture and workflow graphic
 - `assets/architecture-workflow.png`: PNG export of the architecture graphic for slide tools that prefer bitmap assets

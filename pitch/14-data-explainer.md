@@ -284,10 +284,10 @@ If you get asked a specific data question:
 | Sensitive columns flagged | 9 |
 | Governing Ontario privacy law | PHIPA (Personal Health Information Protection Act) |
 | Ontario dataset we did NOT use | Ontario Wait Time Information System (restricted) |
-| Best demo run scenario | Distributed Campus Routing (Run ID: 5f77ce451d) |
-| Best demo run fidelity | 81.54 |
+| Best demo run scenario | Distributed Campus Routing (Run ID: f24271e772) |
+| Best demo run fidelity | 87.83 |
 | Best demo run privacy | 100.0 (zero exact row overlap) |
-| Best demo run utility | 88.92 |
+| Best demo run utility | 92.7 |
 
 ---
 

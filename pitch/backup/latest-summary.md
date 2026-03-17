@@ -1,16 +1,16 @@
-# Southlake Pitch Draft 5f77ce451d
+# Southlake Pitch Draft f24271e772
 
 ## Methodology
-- A synthetic healthcare dataset was generated using advanced statistical modeling to enable innovation teams to test distributed campus routing scenarios while maintaining complete patient privacy protection.
-- The dataset achieves 81.54% fidelity to real-world patterns while providing 100% privacy protection, allowing teams to validate assumptions about patient flow, resource demand, and care transitions across multiple facilities.
-- This planning-grade synthetic data enables rapid prototyping and testing of routing algorithms and capacity planning models without the regulatory constraints and privacy risks associated with actual patient records.
+- Loaded a curated NHAMCS emergency dataset and profiled its operational schema for network operations team planning work.
+- Used GaussianCopulaSynthesizer to synthesize 13085 rows, then applied a distributed campus routing layer tied to Southlake's distributed-network future state.
+- Evaluated the result on fidelity, leakage risk, and scenario plausibility before generating pitch-ready planning artifacts.
 
 ## Features
-- Healthcare systems can optimize patient flow by expanding observation units and streamlined transfer protocols to reduce bottlenecks and improve care transitions.
-- Our solution maintains current capacity while intelligently redistributing patients across different care pathways, maximizing resource utilization without requiring additional beds or staff.
-- The platform incorporates smart routing alerts and decision support tools that guide care teams toward optimal patient placement while maintaining safety standards.
+- Single-click preset loading, upload support, and agent-style planning runs for Southlake-style service design questions.
+- Synthetic output preview with fidelity, privacy, and utility metrics in one dashboard for innovation teams.
+- Auto-generated methodology, feature, and caution copy for the 3-slide presentation and backup materials.
 
 ## Cautions
-- This synthetic dataset is designed exclusively for healthcare planning workshops, innovation sprints, and workflow prototyping sessions to support strategic discussions and scenario modeling.
-- The data should not replace actual patient information or operational data from your organization, as it's based on U.S. national patterns that may not reflect local care delivery or specific patient populations.
-- Any insights generated from this prototype should be validated with your organization's actual data, privacy protocols, and operational stakeholders before implementation in real healthcare projects.
+- Use synthetic outputs for planning workshops, innovation sprints, workflow prototyping, and scenario discussion only.
+- Do not treat this dataset as a substitute for governed Southlake patient data or operational truth.
+- Rare cohorts and local Ontario care patterns are not faithfully represented in a U.S. national public-use source.
